@@ -1,6 +1,9 @@
 package ar.edu.untref.simuladordegases.implementacion;
 
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
+import java.util.LinkedList;
+import java.util.List;
 
 @SuppressWarnings("serial")
 public class Contenedor extends JPanel {
@@ -22,7 +25,7 @@ public class Contenedor extends JPanel {
 	private Float yaParticulas = (float) 1;
 
 	public Contenedor(){		
-		this.particulas = new LinkedList<Particula>();			
+		this.particulas = new LinkedList<Particula>();
 	}
 
 		public void agitar() {

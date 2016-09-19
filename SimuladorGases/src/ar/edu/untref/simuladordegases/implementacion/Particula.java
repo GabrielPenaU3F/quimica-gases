@@ -26,23 +26,32 @@ public class Particula {
 	Shape circle = new Ellipse2D.Float(this.height, this.width,this.x,this.y);		
 
 	public Particula(Contenedor contenedor, int width, int height, Float xa, Float ya, Float vel) {
-		this.contenedor= contenedor;
+
+        this.contenedor= contenedor;
 		this.width = width;
 		this.height = height;
 		this.setXa(xa);
 		this.setYa(ya);
 		this.velocidad = vel;
+
 	}
 
 	void mover() {
 		
 		if (x + xa < 0)
+
 			xa = velocidad;
+
 		if (x + xa > contenedor.getAncho() - this.width)
+
 			xa = -velocidad;
+
 		if (y + ya < 0)
+
 			ya = velocidad;
+
 		if (y + ya > contenedor.getAlto() - this.height)
+
 			ya = -velocidad;
 		
 		x = (int) (x + xa);
