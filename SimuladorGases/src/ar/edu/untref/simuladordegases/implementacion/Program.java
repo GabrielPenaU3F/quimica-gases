@@ -9,8 +9,9 @@ public class Program {
 
     public static void main(String[] args) throws InterruptedException {
 
-        final Simulador frame = new Simulador();
-        frame.comenzarSimulacion(frame);
+        final Simulador simulador = new Simulador();
+        simulador.comenzarSimulacion();
+
     }
     
 }
