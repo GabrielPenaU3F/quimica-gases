@@ -10,6 +10,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Simulador extends JFrame {
 		
@@ -22,6 +24,7 @@ public class Simulador extends JFrame {
 	private Float temperatura = (float) 300;
 	private Integer volumen = 50;	
 	private Color colorDePresion;
+    private Map<String, JComponent> componentes;
 	
 	/**
 	 * Launch the application.
@@ -34,43 +37,43 @@ public class Simulador extends JFrame {
         Simulador simulador = this; //Para hacerlo mas visible
         construirLayout(simulador);
         SpringLayout springLayout = (SpringLayout)simulador.getContentPane().getLayout();
-
+        componentes = new HashMap<String, JComponent>();
 
         construirComponentesVisuales(simulador, springLayout);
     }
 
     private void construirComponentesVisuales(Simulador simulador, SpringLayout springLayout) throws InterruptedException {
 
-        JComponent contenedor = construirContenedorDeParticulas(simulador, springLayout); //Nombre: ContenedorParticulas
+        construirContenedorDeParticulas(simulador, springLayout); //Nombre: ContenedorParticulas
 
         construirEtiquetaSimuladorDeGases(simulador, springLayout); //Nombre: EtiquetaSimulador
 
         construirEtiquetaPresionResultante(simulador, springLayout); //Nombre: EtiquetaPresionResultante
 
-        JComponent indicadorPresion = construirIndicadorDePresion(simulador, springLayout); //Nombre: IndicadorDePresion
+        construirIndicadorDePresion(simulador, springLayout); //Nombre: IndicadorDePresion
 
         construirEtiquetaMoles(simulador, springLayout); //Nombre: EtiquetaMoles
 
         construirSliderMoles(simulador, springLayout); //Nombre: SliderMoles
 
-        JComponent lblTemperatura = construirEtiquetaTemperatura(simulador, springLayout); //Nombre: EtiquetaTemperatura
+        construirEtiquetaTemperatura(simulador, springLayout); //Nombre: EtiquetaTemperatura
 
         construirSliderTemperatura(simulador, springLayout); //Nombre: SliderTemperatura
 
         construirEtiquetaVolumen(simulador, springLayout); //Nombre: EtiquetaVolumen
 
-        JComponent sliderVolumen = construirSliderVolumen(simulador, springLayout); //Nombre: SliderVolumen
+        construirSliderVolumen(simulador, springLayout); //Nombre: SliderVolumen
 
-        construirBotonActualizar(simulador, springLayout, contenedor, indicadorPresion, lblTemperatura, sliderVolumen); //Nombre: BotonActualizar
+        construirBotonActualizar(simulador, springLayout); //Nombre: BotonActualizar
     }
 
-    private void construirBotonActualizar(Simulador simulador, SpringLayout springLayout, JComponent contenedor, JComponent indicadorPresion, JComponent lblTemperatura, JComponent sliderVolumen) throws InterruptedException {
+    private void construirBotonActualizar(Simulador simulador, SpringLayout springLayout) throws InterruptedException {
 
         JButton btnActualizar = new JButton("Actualizar");
 
-        imponerRestriccionesParaElTamanioDelContenedor(simulador, springLayout, btnActualizar, sliderVolumen, lblTemperatura);
+        imponerRestriccionesParaElTamanioDelContenedor(simulador, springLayout, btnActualizar);
 
-        colocarListener(simulador, springLayout, contenedor, indicadorPresion, btnActualizar);
+        colocarListener(simulador, springLayout, btnActualizar);
 
         btnActualizar.setFont(new Font("Droid Sans", Font.BOLD, 16));
         btnActualizar.setName("BotonActualizar");
@@ -82,61 +85,44 @@ public class Simulador extends JFrame {
 		 * NOTA2: Si esta sentencia esta al final del main, el simulador nunca se hace visible porque precipitar() es infinito
 		 */
         simulador.setVisible(true);
-        ((Contenedor) contenedor).precipitar();
+        ((Contenedor) simulador.componentes.get("ContenedorParticulas")).precipitar();
     }
 
-    private void colocarListener(final Simulador simulador, final SpringLayout springLayout, final JComponent contenedor, final JComponent indicadorPresion, JButton btnActualizar) {
+    private void colocarListener(Simulador simulador, SpringLayout springLayout, JComponent boton) {
 
-        btnActualizar.addMouseListener(new MouseAdapter() {
+        boton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 simulador.actualizar();
                 //Modificación de la temperatura del gas
-                ((Contenedor)contenedor).modificarTemperaturaDeParticulas(simulador.getTemperatura());
+                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarTemperaturaDeParticulas(simulador.getTemperatura());
                 //Modificación de la cantidad de moles de gas
-                ((Contenedor)contenedor).modificarCantidadDeMoles(simulador.getMoles());
+                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarCantidadDeMoles(simulador.getMoles());
                 //Modificación del volumen del recipiente
                 Integer nuevoBordeSur = (int) (550 * (simulador.getVolumen()/100.0));
                 Integer nuevoBordeEste = (int) (450 * (simulador.getVolumen()/100.0));
-                ((Contenedor)contenedor).setAncho(nuevoBordeEste - 70);
-                ((Contenedor)contenedor).setAlto(nuevoBordeSur - 100);
-                springLayout.putConstraint(SpringLayout.SOUTH, contenedor, nuevoBordeSur, SpringLayout.NORTH, simulador.getContentPane());
-                springLayout.putConstraint(SpringLayout.EAST, contenedor, nuevoBordeEste, SpringLayout.WEST, simulador.getContentPane());
+                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAncho(nuevoBordeEste - 70);
+                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAlto(nuevoBordeSur - 100);
+                springLayout.putConstraint(SpringLayout.SOUTH, simulador.componentes.get("ContenedorParticulas"), nuevoBordeSur, SpringLayout.NORTH, simulador.getContentPane());
+                springLayout.putConstraint(SpringLayout.EAST, simulador.componentes.get("ContenedorParticulas"), nuevoBordeEste, SpringLayout.WEST, simulador.getContentPane());
                 //Modificación de la etiqueta de presion
-                ((JLabel)indicadorPresion).setText(simulador.getPresion() + " atm.");
-                indicadorPresion.setForeground(simulador.getColorDePresion());
+                ((JLabel)simulador.componentes.get("IndicadorDePresion")).setText(simulador.getPresion() + " atm.");
+                simulador.componentes.get("IndicadorDePresion").setForeground(simulador.getColorDePresion());
 
             }
         });
     }
 
-    private void imponerRestriccionesParaElTamanioDelContenedor(Simulador simulador, SpringLayout springLayout, JButton btnActualizar, JComponent sliderVolumen, JComponent lblTemperatura) {
+    private void imponerRestriccionesParaElTamanioDelContenedor(Simulador simulador, SpringLayout springLayout, JButton btnActualizar) {
 
-        springLayout.putConstraint(SpringLayout.NORTH, btnActualizar, 42, SpringLayout.SOUTH, sliderVolumen);
-        springLayout.putConstraint(SpringLayout.WEST, btnActualizar, 0, SpringLayout.WEST, lblTemperatura);
+        springLayout.putConstraint(SpringLayout.NORTH, btnActualizar, 42, SpringLayout.SOUTH, simulador.componentes.get("SliderVolumen"));
+        springLayout.putConstraint(SpringLayout.WEST, btnActualizar, 0, SpringLayout.WEST, simulador.componentes.get("EtiquetaTemperatura"));
         springLayout.putConstraint(SpringLayout.SOUTH, btnActualizar, 550, SpringLayout.NORTH, simulador.getContentPane());
-        springLayout.putConstraint(SpringLayout.EAST, btnActualizar, 131, SpringLayout.WEST, lblTemperatura);
+        springLayout.putConstraint(SpringLayout.EAST, btnActualizar, 131, SpringLayout.WEST, simulador.componentes.get("EtiquetaTemperatura"));
     }
 
-    private JComponent buscarComponentePorNombre(Simulador simulador, String nombre) {
 
-        Component componentes[] = simulador.getContentPane().getComponents();
-
-        for(int i=0; i<componentes.length; i++) {
-
-            if(componentes[i].getName().equals("nombre")) {
-
-                JComponent componente = (JComponent) componentes[i];
-                return componente;
-
-            }
-
-        }
-        return null;
-
-    }
-
-    private JSlider construirSliderVolumen(Simulador simulador, SpringLayout springLayout) {
+    private void construirSliderVolumen(Simulador simulador, SpringLayout springLayout) {
 
         JSlider sliderVolumen = new JSlider();
         springLayout.putConstraint(SpringLayout.NORTH, sliderVolumen, 424, SpringLayout.NORTH, simulador.getContentPane());
@@ -158,7 +144,8 @@ public class Simulador extends JFrame {
         sliderVolumen.setPaintLabels(true);
         sliderVolumen.setName("SliderVolumen");
         simulador.getContentPane().add(sliderVolumen);
-        return sliderVolumen;
+        simulador.componentes.put("SliderVolumen", sliderVolumen);
+
     }
 
     private void construirEtiquetaVolumen(Simulador simulador, SpringLayout springLayout) {
@@ -170,6 +157,8 @@ public class Simulador extends JFrame {
         lblVolumen.setForeground(Color.BLUE);
         lblVolumen.setName("EtiquetaVolumen");
         simulador.getContentPane().add(lblVolumen);
+        simulador.componentes.put("EtiquetaVolumen", lblVolumen);
+
     }
 
     private void construirSliderTemperatura(Simulador simulador, SpringLayout springLayout) {
@@ -195,9 +184,11 @@ public class Simulador extends JFrame {
         sliderTemperatura.setPaintLabels(true);
         sliderTemperatura.setName("SliderTemperatura");
         simulador.getContentPane().add(sliderTemperatura);
+        simulador.componentes.put("SliderTemperatura", sliderTemperatura);
+
     }
 
-    private JLabel construirEtiquetaTemperatura(Simulador simulador, SpringLayout springLayout) {
+    private void construirEtiquetaTemperatura(Simulador simulador, SpringLayout springLayout) {
 
         JLabel lblTemperatura = new JLabel("Temperatura (K)");
         springLayout.putConstraint(SpringLayout.NORTH, lblTemperatura, 290, SpringLayout.NORTH, simulador.getContentPane());
@@ -206,7 +197,7 @@ public class Simulador extends JFrame {
         lblTemperatura.setForeground(Color.RED);
         lblTemperatura.setName("EtiquetaTemperatura");
         simulador.getContentPane().add(lblTemperatura);
-        return lblTemperatura;
+        simulador.componentes.put("EtiquetaTemperatura", lblTemperatura);
 
     }
 
@@ -231,6 +222,8 @@ public class Simulador extends JFrame {
         sliderMoles.setPaintLabels(true);
         sliderMoles.setName("SliderMoles");
         simulador.getContentPane().add(sliderMoles);
+        simulador.componentes.put("SliderMoles", sliderMoles);
+
     }
 
     private void construirEtiquetaMoles(Simulador simulador, SpringLayout springLayout) {
@@ -243,9 +236,11 @@ public class Simulador extends JFrame {
         lblMoles.setForeground(new Color(0, 128, 0));
         lblMoles.setName("EtiquetaMoles");
         simulador.getContentPane().add(lblMoles);
+        simulador.componentes.put("EtiquetaMoles", lblMoles);
+
     }
     
-    private JLabel construirIndicadorDePresion(Simulador simulador, SpringLayout springLayout) {
+    private void construirIndicadorDePresion(Simulador simulador, SpringLayout springLayout) {
         
         JLabel indicadorPresion = new JLabel(simulador.presion + " atm.");
         springLayout.putConstraint(SpringLayout.NORTH, indicadorPresion, 85, SpringLayout.NORTH, simulador.getContentPane());
@@ -255,7 +250,8 @@ public class Simulador extends JFrame {
         indicadorPresion.setFont(new Font("Droid Sans", Font.BOLD, 20));
         indicadorPresion.setName("IndicadorDePresion");
         simulador.getContentPane().add(indicadorPresion);
-        return indicadorPresion;
+        simulador.componentes.put("IndicadorDePresion", indicadorPresion);
+
     }
     
     private void construirEtiquetaPresionResultante(Simulador simulador, SpringLayout springLayout) {
@@ -267,6 +263,8 @@ public class Simulador extends JFrame {
         lblPresionResultante.setFont(new Font("Droid Sans", Font.BOLD, 20));
         lblPresionResultante.setName("EtiquetaPresionResultante");
         simulador.getContentPane().add(lblPresionResultante);
+        simulador.componentes.put("EtiquetaPresionResultante", lblPresionResultante);
+
     }
     
     private void construirEtiquetaSimuladorDeGases(Simulador simulador, SpringLayout springLayout) {
@@ -278,9 +276,10 @@ public class Simulador extends JFrame {
         lblSimuladorDeGases.setFont(new Font("Droid Sans", Font.BOLD, 40));
         lblSimuladorDeGases.setName("EtiquetaSimulador");
         simulador.getContentPane().add(lblSimuladorDeGases);
+        simulador.componentes.put("EtiquetaSimulador", lblSimuladorDeGases);
     }
     
-    private JPanel construirContenedorDeParticulas(Simulador simulador, SpringLayout springLayout) {
+    private void construirContenedorDeParticulas(Simulador simulador, SpringLayout springLayout) {
 
         JPanel contenedor = new Contenedor();
         ((Contenedor) contenedor).setLimites(80,80,380,450);
@@ -292,7 +291,7 @@ public class Simulador extends JFrame {
         contenedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
         contenedor.setName("ContenedorParticulas");
         simulador.getContentPane().add(contenedor);
-        return contenedor;
+        simulador.componentes.put("ContenedorParticulas", contenedor);
     }
 
     private void construirLayout(Simulador simulador) {
