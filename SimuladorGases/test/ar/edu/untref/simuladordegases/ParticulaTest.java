@@ -18,5 +18,44 @@ public class ParticulaTest {
         Assert.assertNotNull(particula);
 
     }
+
+    @Test
+    public void testQueLaParticulaSeCreeConAltoYAnchoDefault10() {
+
+        Contenedor contenedor = new Contenedor();
+        Particula particula = new Particula(contenedor,1,1,1);
+        Assert.assertEquals(10, particula.getAncho());
+        Assert.assertEquals(10, particula.getAlto());
+    }
+
+    @Test
+    public void testQueLaParticulaSeCreeConVelocidadDefault1() {
+
+        Contenedor contenedor = new Contenedor();
+        Particula particula = new Particula(contenedor,1,1,1);
+        Assert.assertEquals(1, particula.getVelocidad(), 0.0);
+
+    }
+
+    @Test
+    public void testQueLaParticulaSeCreeConMovimientoEnXDefault1() {
+
+        Contenedor contenedor = new Contenedor();
+        Particula particula = new Particula(contenedor,1,1,1);
+        Assert.assertEquals(1, particula.getMovimientoX(), 0.0);
+
+
+    }
+
+    @Test
+    public void testQueLaParticulaSeCreeConMovimientoEnYDefault1() {
+
+        Contenedor contenedor = new Contenedor();
+        Particula particula = new Particula(contenedor,1,1,1);
+        Assert.assertEquals(1, particula.getMovimientoY(), 0.0);
+
+    }
+
+
     
 }

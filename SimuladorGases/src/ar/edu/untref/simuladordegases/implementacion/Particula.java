@@ -118,4 +118,14 @@ public class Particula {
         this.mov_y = mov_y;
         
     }
+
+    public int getAncho() {
+
+        return this.ancho;
+    }
+    
+    public int getAlto() {
+        
+        return this.altura;
+    }
 }
