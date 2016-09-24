@@ -18,9 +18,8 @@ public class Contenedor extends JPanel {
 	private Integer comb1x;
 	private Integer comb2x;
 	private Integer comb1y;
-	private Integer comb2y;	
-	private Float velocidadParticulas = (float) 1;
-	private Color colorDeParticulas;
+	private Integer comb2y;
+    private float temperatura;
 
 	public Contenedor(){		
 		this.particulas = new LinkedList<Particula>();
@@ -113,22 +112,24 @@ public class Contenedor extends JPanel {
 
 	/** Modifica la temperatura del contenedor
 	 */
-	public void modificarTemperaturaDeParticulas(Float temperatura){	
-		
-		this.calcularColorDeParticulas(temperatura);
+	public void modificarTemperaturaDeParticulas(float temperatura){
 
-		this.setVelocidadParticulas(temperatura/100);
+        this.temperatura = temperatura;
 
-		this.modificarMovimientoDeParticulas(temperatura/100, temperatura/100);
+        this.setColorDeParticulas();
 
-        this.setColorDeParticulas(this.getColorDeParticulas());
+		this.setVelocidadParticulas();
+
+		this.modificarMovimientoDeParticulas(this.temperatura/100, this.temperatura/100);
+
 
 	}
 
-	private void calcularColorDeParticulas(Float temperatura) {
+	private Color calcularColorDeParticulas() {
+
 		Integer verde = (int) (255.0 * ((temperatura - 100.0) / 500.0));
-		Color colorDeParticulas = new Color(255, 255 - verde, 0);	
-		this.setColorDeParticulas(colorDeParticulas);
+		return new Color(255, 255 - verde, 0);
+
 	}
 
 	/**
@@ -150,8 +151,8 @@ public class Contenedor extends JPanel {
 
 		for(int i = 0; i < cantidadDeParticulas; i++){
             Particula particula = new Particula(this, 1, 1, 1);
+            particula.setColor(this.calcularColorDeParticulas());
 			this.particulas.add(particula);
-			this.particulas.get(i).setColor(this.getColorDeParticulas());
 
 		}
 		
@@ -223,36 +224,29 @@ public class Contenedor extends JPanel {
 		this.alto = alto;		
 	}
 
-	public Float getVelocidadParticulas() {
-		return velocidadParticulas;
-	}
-
-	public void setVelocidadParticulas(Float velocidad) {
+	public void setVelocidadParticulas() {
 
 		for (Particula particula : this.particulas) {
 
-            particula.setVelocidad(velocidad);
+            particula.setVelocidad(this.temperatura/100);
 
         }
 
 	}
 
-	public Color getColorDeParticulas() {
-		return colorDeParticulas;
-	}
+	public void setColorDeParticulas() {
 
-	public void setColorDeParticulas(Color colorDeParticulas) {
-
+        Color color = this.calcularColorDeParticulas();
 		for(Particula particula : this.particulas) {
 
-            particula.setColor(colorDeParticulas);
+            particula.setColor(color);
 
         }
 
 	}
     
     
-    public void modificarMovimientoDeParticulas(Float mov_x, Float mov_y) {
+    public void modificarMovimientoDeParticulas(float mov_x, float mov_y) {
         
         for(Particula particula : this.particulas) {
 
