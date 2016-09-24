@@ -12,95 +12,96 @@ public class Particula {
 	private int x = 0;
 	private int y = 0;
 
-	//xa y ya representan el movimiento de la pelota
-	private Float xa;
-	private Float ya;
+	//mov_x y mov_y representan el movimiento de la pelota
+	private float mov_x;
+	private float mov_y;
 	
-	private Float velocidad;
+	private float velocidad;
 	private Color color;
 	
 	private Contenedor contenedor;
-	private int height;
-	private int width;
+	private int altura = 10;
+	private int ancho = 10;
 	
-	Shape circle = new Ellipse2D.Float(this.height, this.width,this.x,this.y);		
+	Shape circle = new Ellipse2D.Float(this.altura, this.ancho, this.x, this.y);
 
-	public Particula(Contenedor contenedor, int width, int height, Float xa, Float ya, Float vel) {
+	public Particula(Contenedor contenedor, float mov_x, float mov_y, float vel) {
 
         this.contenedor= contenedor;
-		this.width = width;
-		this.height = height;
-		this.setXa(xa);
-		this.setYa(ya);
+		this.modificarMovimiento(mov_x, mov_y);
 		this.velocidad = vel;
 
 	}
 
-	void mover() {
+	public void mover() {
 		
-		if (x + xa < 0)
+		if (x + mov_x < 0)
 
-			xa = velocidad;
+			mov_x = velocidad;
 
-		if (x + xa > contenedor.getAncho() - this.width)
+		if (x + mov_x > contenedor.getAncho() - this.ancho)
 
-			xa = -velocidad;
+			mov_x = -velocidad;
 
-		if (y + ya < 0)
+		if (y + mov_y < 0)
 
-			ya = velocidad;
+			mov_y = velocidad;
 
-		if (y + ya > contenedor.getAlto() - this.height)
+		if (y + mov_y > contenedor.getAlto() - this.altura)
 
-			ya = -velocidad;
+			mov_y = -velocidad;
 		
-		x = (int) (x + xa);
-		y = (int) (y + ya);
+		x = (int) (x + mov_x);
+		y = (int) (y + mov_y);
 	}
 
 	/* crea un rectangulo alrededor de la pelota para hacer mas facil el metodo colision*/
-	public Rectangle getLimite() {
-		return new Rectangle(this.x, this.y, this.width, this.height);
+	public Rectangle getRectanguloLimite() {
+		return new Rectangle(this.x, this.y, this.ancho, this.altura);
 		
 	}		
 
 	public void paint(Graphics2D g) {
-		g.fillOval(this.x, this.y, this.width, this.height);
+		g.fillOval(this.x, this.y, this.ancho, this.altura);
 		g.setColor(this.getColor());
 	}
 
-	public Float getVelocidad() {
+	public float getVelocidad() {
+
 		return this.velocidad;
+
 	}
 
-	public void setVelocidad(float f) {
-		this.velocidad = (float) f;
+	public void setVelocidad(float velocidad) {
+
+        this.velocidad = velocidad;
+
 	}
 
 	public void setX(int x) {
+
 		this.x = x;
+
 	}
 
 	public void setY(int y) {
+
 		this.y = y;
+
 	}
 
-	public void setXa(Float float1){
-		this.xa = float1;
-	}
-	
-	public void setYa(Float float1){
-		this.ya = float1;
-	}
+	public float getMovimientoX() {
 
-	public Float getXa() {
 		// TODO Auto-generated method stub
-		return this.xa;
+		return this.mov_x;
+
 	}
 
-	public Float getYa() {
+	public float getMovimientoY() {
+
 		// TODO Auto-generated method stub
-		return this.ya;
+		return this.mov_y;
+
 	}
 
 	public Color getColor() {
@@ -110,5 +111,11 @@ public class Particula {
 	public void setColor(Color color) {
 		this.color = color;
 	}
-	
+    
+    public void modificarMovimiento(Float mov_x, Float mov_y) {
+
+        this.mov_x = mov_x;
+        this.mov_y = mov_y;
+        
+    }
 }
