@@ -306,8 +306,11 @@ public class Simulador extends JFrame {
 	 * Accion ejecutada al presionar el boton "actualizar"
 	 * El valor de la presion resultante y el movimiento de las particulas deben actualizarse aqui
 	 */
-	private void actualizar(){
-		this.presion = this.leyDeGasesIdeales();		
+	private void actualizar()
+    {
+
+		this.presion = this.leyDeGasesIdeales();
+
 	}
 	
 	/**
@@ -353,10 +356,6 @@ public class Simulador extends JFrame {
 
 	public String getPresion() {
 		return presion;
-	}
-
-	public void setPresion(String presion) {
-		this.presion = presion;
 	}
 
 	public Color getColorDePresion() {

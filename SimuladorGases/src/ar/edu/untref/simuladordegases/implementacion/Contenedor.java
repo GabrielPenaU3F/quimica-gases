@@ -85,8 +85,10 @@ public class Contenedor extends JPanel {
                 }
 
                 //Mueve a todas las partículas una vez que se probaron todas las alternativas de colisiones entre ellas
-                for (int k = 0; k < this.particulas.size(); k++) {
-                    this.particulas.get(k).mover();
+                for (Particula particula : this.particulas) {
+
+                    particula.mover();
+
                 }
             }
         }
@@ -96,8 +98,10 @@ public class Contenedor extends JPanel {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
-		for(int i = 0; i < this.particulas.size() ; i++){			
-			this.particulas.get(i).paint(g2d);			
+		for(Particula particula : this.particulas){
+
+			particula.paint(g2d);
+
 		}		
 	}
 	
