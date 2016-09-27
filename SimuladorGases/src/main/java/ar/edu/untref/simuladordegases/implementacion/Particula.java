@@ -33,7 +33,7 @@ public class Particula {
 
 			mov_x = velocidad;
 
-		if (x + mov_x > contenedor.getAncho() - this.ancho)
+		else if (x + mov_x > contenedor.getAncho() - this.ancho)
 
 			mov_x = -velocidad;
 
@@ -41,7 +41,7 @@ public class Particula {
 
 			mov_y = velocidad;
 
-		if (y + mov_y > contenedor.getAlto() - this.altura)
+		else if (y + mov_y > contenedor.getAlto() - this.altura)
 
 			mov_y = -velocidad;
 		
@@ -117,5 +117,15 @@ public class Particula {
     public int getAlto() {
         
         return this.altura;
+    }
+
+    public double getXPosicion() {
+
+        return x;
+    }
+
+    public double getYPosicion() {
+
+        return y;
     }
 }

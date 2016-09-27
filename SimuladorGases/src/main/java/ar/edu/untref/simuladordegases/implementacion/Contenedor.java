@@ -10,22 +10,20 @@ public class Contenedor extends JPanel {
 
 	private List<Particula> particulas;
 
-	private Integer ancho;
-	private Integer alto;
-	private Integer x;
-	private Integer y;
-	private Double numAleatorio;
-	private Integer comb1x;
-	private Integer comb2x;
-	private Integer comb1y;
-	private Integer comb2y;
+	private int ancho;
+	private int alto;
+	private int x;
+	private int y;
+	private double numAleatorio;
     private float temperatura;
 
 	public Contenedor(){		
 		this.particulas = new LinkedList<Particula>();
 	}
 
-		public void agitar() {
+
+	        //Este metodo puede mejorarse mucho
+			public void agitar() {
 
             //Se posiciona en cada partícula de la lista.
             for (int i = 0; i < this.particulas.size(); i++) {
@@ -40,43 +38,32 @@ public class Contenedor extends JPanel {
                     // por eso no tiene sentido probar el if(colisión) si i es igual a j.
                     if (i != j) {
 
-                        Particula particulaOtra = this.particulas.get(j);
+                        Particula otraParticula = this.particulas.get(j);
 
                         //Verifica la condicion de colision
-                        if (colision(particulaActual, particulaOtra)) {
+                        if (hayChoqueEntre(particulaActual, otraParticula)) {
 
                             if (numAleatorio > 0.0 && numAleatorio < 0.25) {
 
-                                comb1x = -1;
-                                comb2x = 1;
-                                comb1y = 1;
-                                comb2y = -1;
+                                particulaActual.modificarMovimiento((-1)*particulaActual.getVelocidad(), particulaActual.getVelocidad());
+                                otraParticula.modificarMovimiento(otraParticula.getVelocidad(), (-1)*otraParticula.getVelocidad());
 
                             } else if (numAleatorio >= 0.25 && numAleatorio < 0.50) {
 
-                                comb1x = 1;
-                                comb2x = -1;
-                                comb1y = -1;
-                                comb2y = 1;
+                                particulaActual.modificarMovimiento(particulaActual.getVelocidad(), (-1)*particulaActual.getVelocidad());
+                                otraParticula.modificarMovimiento((-1)*otraParticula.getVelocidad(), otraParticula.getVelocidad());
 
                             } else if (numAleatorio >= 0.50 && numAleatorio < 0.75) {
 
-                                comb1x = -1;
-                                comb2x = 1;
-                                comb1y = -1;
-                                comb2y = 1;
+                                particulaActual.modificarMovimiento((-1)*particulaActual.getVelocidad(), (-1)*particulaActual.getVelocidad());
+                                otraParticula.modificarMovimiento(otraParticula.getVelocidad(), otraParticula.getVelocidad());
 
                             } else if (numAleatorio >= 0.75 && numAleatorio < 1.0) {
 
-                                comb1x = 1;
-                                comb2x = -1;
-                                comb1y = 1;
-                                comb2y = -1;
+                                particulaActual.modificarMovimiento(particulaActual.getVelocidad(), particulaActual.getVelocidad());
+                                otraParticula.modificarMovimiento((-1)*otraParticula.getVelocidad(), (-1)*otraParticula.getVelocidad());
 
                             }
-
-                            particulaActual.modificarMovimiento(comb1x * particulaActual.getVelocidad(), comb1y * particulaActual.getVelocidad());
-                            particulaOtra.modificarMovimiento(comb2x * particulaOtra.getVelocidad(), comb2y * particulaOtra.getVelocidad());
 
                         }
 
@@ -122,7 +109,7 @@ public class Contenedor extends JPanel {
 
         this.setColorDeParticulas();
 
-		this.setVelocidadParticulas();
+		this.setVelocidadParticulas(this.temperatura/100);
 
 		this.modificarMovimientoDeParticulas(this.temperatura/100, this.temperatura/100);
 
@@ -142,10 +129,14 @@ public class Contenedor extends JPanel {
 	public void modificarCantidadDeMoles(int cantidadDeParticulas){
 
 		if(cantidadDeParticulas >= this.particulas.size()){
+
 			this.agregarParticulas(cantidadDeParticulas - this.particulas.size());
-		} else {
+
+        } else {
+
 			this.eliminarParticulas(this.particulas.size() - cantidadDeParticulas);
-		}
+
+        }
 	}
 
 	/** 
@@ -177,18 +168,12 @@ public class Contenedor extends JPanel {
      * y la pelota tendria que cambiar el sentido en el que rebota
      * por otro lado, el metodo intersects devuelve true si el obj de la izquierda se choca con el de la derecha
      * */
-    private boolean colision(Particula particula, Particula otraParticula) {
+    private boolean hayChoqueEntre(Particula particula, Particula otraParticula) {
 
         return particula.getRectanguloLimite().intersects(otraParticula.getRectanguloLimite());
 
     }
 
-	public void agregarParticula(Particula particula) {
-
-		this.particulas.add(particula);
-
-	}
-	
 	public int getX() {
 		return x;
 	}
@@ -204,13 +189,13 @@ public class Contenedor extends JPanel {
 	public void setY(int y) {
 		this.y = y;
 	}
-	
-	public int getAncho(){			
-		return this.ancho;		
+
+	public int getAncho(){
+		return this.ancho;
 	}
 
 	public int getAlto(){
-		return this.alto;		
+		return this.alto;
 	}
 
 	public void setAncho(int ancho) {
@@ -225,14 +210,14 @@ public class Contenedor extends JPanel {
 		this.setX(x);
 		this.setY(x);
 		this.ancho = ancho;
-		this.alto = alto;		
+		this.alto = alto;
 	}
 
-	public void setVelocidadParticulas() {
+	public void setVelocidadParticulas(float velocidad) {
 
 		for (Particula particula : this.particulas) {
 
-            particula.setVelocidad(this.temperatura/100);
+            particula.setVelocidad(velocidad);
 
         }
 

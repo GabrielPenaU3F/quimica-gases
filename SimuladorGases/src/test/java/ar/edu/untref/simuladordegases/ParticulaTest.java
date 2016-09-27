@@ -56,6 +56,29 @@ public class ParticulaTest {
 
     }
 
+    @Test
+    public void testQueSeMueva1EnXSinChocar() {
+
+        Contenedor contenedor = new Contenedor();
+        contenedor.setAncho(200);
+        contenedor.setAlto(200);
+        Particula particula = new Particula(contenedor,1,1,1);
+        particula.mover();
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva1EnYSinChocar() {
+
+        Contenedor contenedor = new Contenedor();
+        contenedor.setAncho(200);
+        contenedor.setAlto(200);
+        Particula particula = new Particula(contenedor,1,1,1);
+        particula.mover();
+        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+
+    }
 
     
 }
