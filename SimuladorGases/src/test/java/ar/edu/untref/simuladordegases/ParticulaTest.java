@@ -80,5 +80,18 @@ public class ParticulaTest {
 
     }
 
+    /*
+    @Test
+    public void testQueSeMueva300EnXYRebote() {
+
+        Contenedor contenedor = new Contenedor();
+        contenedor.setAncho(200);
+        contenedor.setAlto(200);
+        Particula particula = new Particula(contenedor,300,1,1);
+        particula.mover();
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+
+    }*/
+
     
 }
