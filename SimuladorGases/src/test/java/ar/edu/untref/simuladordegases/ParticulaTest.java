@@ -20,7 +20,7 @@ public class ParticulaTest {
     public void inicializar() {
 
         this.contenedor = new Contenedor();
-        this.particula = new Particula(contenedor,1,1,1);
+        this.particula = new Particula(contenedor,1);
 
     }
 
@@ -52,20 +52,9 @@ public class ParticulaTest {
 
     }
 
-    @Test
-    public void testQueLaParticulaSeCreeConMovimientoEnXDefault1() {
-
-        Assert.assertEquals(1, this.particula.getMovimientoX(), 0.0);
-
-    }
-
-    @Test
-    public void testQueLaParticulaSeCreeConMovimientoEnYDefault1() {
-
-        Assert.assertEquals(1, this.particula.getMovimientoY(), 0.0);
-
-    }
-
+    /*
+        TESTS DEL MOVIMIENTO CON VELOCIDAD 1
+     */
     @Test
     public void testQueSeMueva1AlNoresteSinChocar() {
 
@@ -114,5 +103,60 @@ public class ParticulaTest {
 
     }
 
+        /*
+        TESTS DEL MOVIMIENTO CON VELOCIDAD 5
+        */
+
+    @Test
+    public void testQueSeMueva5AlNoresteSinChocar() {
+
+        this.particula.setVelocidad(5);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.moverNoreste();
+        Assert.assertEquals(5, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(5, this.particula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva5AlNoroesteSinChocar() {
+
+        this.particula.setVelocidad(5);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setXPosicion(6);
+        this.particula.moverNoroeste();
+        Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(5, this.particula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva5AlSudesteSinChocar() {
+
+        this.particula.setVelocidad(5);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setYPosicion(6);
+        this.particula.moverSudeste();
+        Assert.assertEquals(5, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva5AlSudoesteSinChocar() {
+
+        this.particula.setVelocidad(5);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setXPosicion(6);
+        this.particula.setYPosicion(6);
+        this.particula.moverSudoeste();
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+
+    }
     
 }

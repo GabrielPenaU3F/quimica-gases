@@ -105,9 +105,6 @@ public class Contenedor extends JPanel {
 
 		this.setVelocidadParticulas(this.temperatura/100);
 
-		this.modificarMovimientoDeParticulas(this.temperatura/100, this.temperatura/100);
-
-
 	}
 
 	private Color calcularColorDeParticulas() {
@@ -139,7 +136,8 @@ public class Contenedor extends JPanel {
 	public void agregarParticulas(int cantidadDeParticulas){	
 
 		for(int i = 0; i < cantidadDeParticulas; i++){
-            Particula particula = new Particula(this, 1, 1, 1);
+
+            Particula particula = new Particula(this, 1);
             particula.setColor(this.calcularColorDeParticulas());
 			this.particulas.add(particula);
 
@@ -227,14 +225,5 @@ public class Contenedor extends JPanel {
         }
 
 	}
-    
-    
-    public void modificarMovimientoDeParticulas(float mov_x, float mov_y) {
-        
-        for(Particula particula : this.particulas) {
 
-            particula.modificarMovimiento(mov_x, mov_y);
-
-        }
-    }
 }

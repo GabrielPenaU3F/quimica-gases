@@ -7,10 +7,6 @@ public class Particula {
 	//Posicion de la pelota en el contenedor
 	private int x = 0;
 	private int y = 0;
-
-	//mov_x y mov_y representan el movimiento de la pelota
-	private float mov_x;
-	private float mov_y;
 	
 	private float velocidad;
 	private Color color;
@@ -19,10 +15,9 @@ public class Particula {
 	private int altura = 10;
 	private int ancho = 10;
 
-	public Particula(Contenedor contenedor, float mov_x, float mov_y, float vel) {
+	public Particula(Contenedor contenedor, float vel) {
 
         this.contenedor = contenedor;
-		this.modificarMovimiento(mov_x, mov_y);
 		this.velocidad = vel;
 
 	}
@@ -53,20 +48,6 @@ public class Particula {
 
 	}
 
-	public float getMovimientoX() {
-
-		// TODO Auto-generated method stub
-		return this.mov_x;
-
-	}
-
-	public float getMovimientoY() {
-
-		// TODO Auto-generated method stub
-		return this.mov_y;
-
-	}
-
 	public Color getColor() {
 
 		return color;
@@ -78,13 +59,6 @@ public class Particula {
 		this.color = color;
 
 	}
-    
-    public void modificarMovimiento(float mov_x, float mov_y) {
-
-        this.mov_x = mov_x;
-        this.mov_y = mov_y;
-        
-    }
 
     public int getAncho() {
 
