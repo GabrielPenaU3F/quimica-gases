@@ -67,47 +67,49 @@ public class ParticulaTest {
     }
 
     @Test
-    public void testQueSeMueva1AlEsteSinChocar() {
+    public void testQueSeMueva1AlNoresteSinChocar() {
 
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
-        this.particula.modificarMovimiento(1,0);
-        this.particula.mover();
+        this.particula.moverNoreste();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva1AlOesteSinChocar() {
+    public void testQueSeMueva1AlNoroesteSinChocar() {
 
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
         this.particula.setXPosicion(2);
-        this.particula.modificarMovimiento(-1,0);
-        this.particula.mover();
+        this.particula.moverNoroeste();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva1AlNorteSinChocar() {
+    public void testQueSeMueva1AlSudesteSinChocar() {
 
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
-        this.particula.modificarMovimiento(0,1);
-        this.particula.mover();
+        this.particula.setYPosicion(2);
+        this.particula.moverSudeste();
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva1AlSurSinChocar() {
+    public void testQueSeMueva1AlSudoesteSinChocar() {
 
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
+        this.particula.setXPosicion(2);
         this.particula.setYPosicion(2);
-        this.particula.modificarMovimiento(0,-1);
-        this.particula.mover();
+        this.particula.moverSudoeste();
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
     }

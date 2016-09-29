@@ -27,29 +27,6 @@ public class Particula {
 
 	}
 
-	public void mover() {
-		
-		if (x + mov_x < 0)
-
-			mov_x = velocidad;
-
-		else if (x + mov_x > contenedor.getAncho() - this.ancho)
-
-			mov_x = -velocidad;
-
-		if (y + mov_y < 0)
-
-			mov_y = velocidad;
-
-		else if (y + mov_y > contenedor.getAlto() - this.altura)
-
-			mov_y = -velocidad;
-		
-		x = (int) (x + mov_x);
-		y = (int) (y + mov_y);
-
-	}
-
 	/* crea un rectangulo alrededor de la pelota para hacer mas facil el metodo colision*/
 	public Rectangle getRectanguloLimite() {
 
@@ -138,4 +115,71 @@ public class Particula {
 
         this.y = y;
     }
+
+    public void moverNoroeste() {
+
+        this.x = calcularNuevaPosicionEnX(-this.velocidad);
+        this.y = calcularNuevaPosicionEnY(this.velocidad);
+
+    }
+
+    public void moverNoreste() {
+
+        this.x = calcularNuevaPosicionEnX(this.velocidad);
+        this.y = calcularNuevaPosicionEnY(this.velocidad);
+
+    }
+
+    public void moverSudeste() {
+
+        this.x = calcularNuevaPosicionEnX(this.velocidad);
+        this.y = calcularNuevaPosicionEnY(-this.velocidad);
+
+    }
+
+    public void moverSudoeste() {
+
+        this.x = calcularNuevaPosicionEnX(-this.velocidad);
+        this.y = calcularNuevaPosicionEnY(-this.velocidad);
+
+    }
+
+    private int calcularNuevaPosicionEnY(float movimientoEnY) {
+
+        float posicionFinalRegular = this.y + movimientoEnY;
+        if(posicionFinalRegular < 0) {
+
+            float movimientoRestanteLuegoDelChoque = movimientoEnY - this.y;
+            return (int) movimientoRestanteLuegoDelChoque;
+
+        }
+        if(posicionFinalRegular > this.contenedor.getAlto()) {
+
+            float movimientoRestanteLuegoDelChoque = movimientoEnY - (this.contenedor.getAlto() - this.y);
+            return (int) movimientoRestanteLuegoDelChoque;
+
+        }
+        return (int) posicionFinalRegular;
+
+    }
+
+    private int calcularNuevaPosicionEnX(float movimientoEnX) {
+
+        float posicionFinalRegular = this.x + movimientoEnX;
+        if(posicionFinalRegular < 0) {
+
+            float movimientoRestanteLuegoDelChoque = movimientoEnX - this.x;
+            return (int) movimientoRestanteLuegoDelChoque;
+
+        }
+        if(posicionFinalRegular > this.contenedor.getAncho()) {
+
+            float movimientoRestanteLuegoDelChoque = movimientoEnX - (this.contenedor.getAncho() - this.x);
+            return (int) movimientoRestanteLuegoDelChoque;
+
+        }
+        return (int) posicionFinalRegular;
+
+    }
+
 }

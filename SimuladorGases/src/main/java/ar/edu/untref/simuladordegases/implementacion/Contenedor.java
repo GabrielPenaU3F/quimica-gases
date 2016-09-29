@@ -45,23 +45,23 @@ public class Contenedor extends JPanel {
 
                             if (numAleatorio > 0.0 && numAleatorio < 0.25) {
 
-                                particulaActual.modificarMovimiento((-1)*particulaActual.getVelocidad(), particulaActual.getVelocidad());
-                                otraParticula.modificarMovimiento(otraParticula.getVelocidad(), (-1)*otraParticula.getVelocidad());
+                                particulaActual.moverNoroeste();
+                                otraParticula.moverSudeste();
 
                             } else if (numAleatorio >= 0.25 && numAleatorio < 0.50) {
 
-                                particulaActual.modificarMovimiento(particulaActual.getVelocidad(), (-1)*particulaActual.getVelocidad());
-                                otraParticula.modificarMovimiento((-1)*otraParticula.getVelocidad(), otraParticula.getVelocidad());
+                                particulaActual.moverSudeste();
+                                otraParticula.moverNoroeste();
 
                             } else if (numAleatorio >= 0.50 && numAleatorio < 0.75) {
 
-                                particulaActual.modificarMovimiento((-1)*particulaActual.getVelocidad(), (-1)*particulaActual.getVelocidad());
-                                otraParticula.modificarMovimiento(otraParticula.getVelocidad(), otraParticula.getVelocidad());
+                                particulaActual.moverSudoeste();
+                                particulaActual.moverNoreste();
 
                             } else if (numAleatorio >= 0.75 && numAleatorio < 1.0) {
 
-                                particulaActual.modificarMovimiento(particulaActual.getVelocidad(), particulaActual.getVelocidad());
-                                otraParticula.modificarMovimiento((-1)*otraParticula.getVelocidad(), (-1)*otraParticula.getVelocidad());
+                                particulaActual.moverNoreste();
+                                particulaActual.moverSudoeste();
 
                             }
 
@@ -71,12 +71,6 @@ public class Contenedor extends JPanel {
 
                 }
 
-                //Mueve a todas las partículas una vez que se probaron todas las alternativas de colisiones entre ellas
-                for (Particula particula : this.particulas) {
-
-                    particula.mover();
-
-                }
             }
         }
 
