@@ -128,4 +128,14 @@ public class Particula {
 
         return y;
     }
+
+    public void setXPosicion(int x) {
+
+        this.x = x;
+    }
+
+    public void setYPosicion(int y) {
+
+        this.y = y;
+    }
 }

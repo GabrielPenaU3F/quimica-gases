@@ -3,6 +3,7 @@ package ar.edu.untref.simuladordegases;
 import ar.edu.untref.simuladordegases.implementacion.Contenedor;
 import ar.edu.untref.simuladordegases.implementacion.Particula;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 /**
@@ -10,88 +11,106 @@ import org.junit.Test;
  */
 public class ParticulaTest {
 
+    private Particula particula;
+    private Contenedor contenedor;
+
+
+
+    @Before
+    public void inicializar() {
+
+        this.contenedor = new Contenedor();
+        this.particula = new Particula(contenedor,1,1,1);
+
+    }
+
     @Test
     public void testCrearParticula() {
 
-        Contenedor contenedor = new Contenedor();
-        Particula particula = new Particula(contenedor,1,1,1);
-        Assert.assertNotNull(particula);
+        Assert.assertNotNull(this.particula);
 
+    }
+
+    @Test
+    public void testQueLaParticulaSeCreeConPosicionDefaultCeroCero() {
+
+        Assert.assertEquals(0, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(0, this.particula.getYPosicion(), 0.0);
     }
 
     @Test
     public void testQueLaParticulaSeCreeConAltoYAnchoDefault10() {
 
-        Contenedor contenedor = new Contenedor();
-        Particula particula = new Particula(contenedor,1,1,1);
-        Assert.assertEquals(10, particula.getAncho());
-        Assert.assertEquals(10, particula.getAlto());
+        Assert.assertEquals(10, this.particula.getAncho());
+        Assert.assertEquals(10, this.particula.getAlto());
     }
 
     @Test
     public void testQueLaParticulaSeCreeConVelocidadDefault1() {
 
-        Contenedor contenedor = new Contenedor();
-        Particula particula = new Particula(contenedor,1,1,1);
-        Assert.assertEquals(1, particula.getVelocidad(), 0.0);
+        Assert.assertEquals(1, this.particula.getVelocidad(), 0.0);
 
     }
 
     @Test
     public void testQueLaParticulaSeCreeConMovimientoEnXDefault1() {
 
-        Contenedor contenedor = new Contenedor();
-        Particula particula = new Particula(contenedor,1,1,1);
-        Assert.assertEquals(1, particula.getMovimientoX(), 0.0);
-
+        Assert.assertEquals(1, this.particula.getMovimientoX(), 0.0);
 
     }
 
     @Test
     public void testQueLaParticulaSeCreeConMovimientoEnYDefault1() {
 
-        Contenedor contenedor = new Contenedor();
-        Particula particula = new Particula(contenedor,1,1,1);
-        Assert.assertEquals(1, particula.getMovimientoY(), 0.0);
+        Assert.assertEquals(1, this.particula.getMovimientoY(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva1EnXSinChocar() {
+    public void testQueSeMueva1AlEsteSinChocar() {
 
-        Contenedor contenedor = new Contenedor();
-        contenedor.setAncho(200);
-        contenedor.setAlto(200);
-        Particula particula = new Particula(contenedor,1,1,1);
-        particula.mover();
-        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.modificarMovimiento(1,0);
+        this.particula.mover();
+        Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva1EnYSinChocar() {
+    public void testQueSeMueva1AlOesteSinChocar() {
 
-        Contenedor contenedor = new Contenedor();
-        contenedor.setAncho(200);
-        contenedor.setAlto(200);
-        Particula particula = new Particula(contenedor,1,1,1);
-        particula.mover();
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setXPosicion(2);
+        this.particula.modificarMovimiento(-1,0);
+        this.particula.mover();
+        Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva1AlNorteSinChocar() {
+
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.modificarMovimiento(0,1);
+        this.particula.mover();
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
     }
 
-    /*
     @Test
-    public void testQueSeMueva300EnXYRebote() {
+    public void testQueSeMueva1AlSurSinChocar() {
 
-        Contenedor contenedor = new Contenedor();
-        contenedor.setAncho(200);
-        contenedor.setAlto(200);
-        Particula particula = new Particula(contenedor,300,1,1);
-        particula.mover();
-        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setYPosicion(2);
+        this.particula.modificarMovimiento(0,-1);
+        this.particula.mover();
+        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
-    }*/
+    }
 
     
 }
