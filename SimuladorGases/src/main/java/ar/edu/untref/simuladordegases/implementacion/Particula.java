@@ -155,5 +155,26 @@ public class Particula {
         return (int) posicionFinalRegular;
 
     }
+    
+    public void moverAleatoriamente(double numAleatorio) {
 
+        if (numAleatorio >= 0.0 && numAleatorio < 0.25) {
+
+            this.moverNoroeste();
+
+        } else if (numAleatorio >= 0.25 && numAleatorio < 0.50) {
+
+            this.moverNoreste();
+
+        } else if (numAleatorio >= 0.50 && numAleatorio < 0.75) {
+
+            this.moverSudoeste();
+
+        } else if (numAleatorio >= 0.75 && numAleatorio < 1.0) {
+
+            this.moverSudeste();
+
+        }
+
+    }
 }

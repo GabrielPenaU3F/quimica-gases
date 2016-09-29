@@ -158,5 +158,51 @@ public class ParticulaTest {
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
     }
-    
+
+    /*TESTS DEL MOVIMIENTO ALEATORIO*/
+
+    @Test
+    public void testQueSeMueva5AlNoroesteConAleatorioCeroTrece() {
+
+        this.particula.setVelocidad(5);
+        this.particula.setXPosicion(6);
+        this.particula.moverAleatoriamente(0.13);
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(5, particula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva5AlNoresteConAleatorioCeroCuarenta() {
+
+        this.particula.setVelocidad(5);
+        this.particula.moverAleatoriamente(0.40);
+        Assert.assertEquals(5, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(5, particula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva5AlSudoesteConAleatorioCeroSesenta() {
+
+        this.particula.setVelocidad(5);
+        this.particula.setXPosicion(6);
+        this.particula.setYPosicion(6);
+        this.particula.moverAleatoriamente(0.60);
+        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testQueSeMueva5AlSudesteConAleatorioCeroNoventa() {
+
+        this.particula.setVelocidad(5);
+        this.particula.setYPosicion(6);
+        this.particula.moverAleatoriamente(0.90);
+        Assert.assertEquals(5, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+
+    }
+
 }

@@ -17,7 +17,7 @@ public class Contenedor extends JPanel {
 	private double numAleatorio;
     private float temperatura;
 
-	public Contenedor(){		
+	public Contenedor(){
 		this.particulas = new LinkedList<Particula>();
 	}
 
@@ -67,6 +67,8 @@ public class Contenedor extends JPanel {
 
                         }
 
+                        this.moverParticulas();
+
                     }
 
                 }
@@ -74,8 +76,19 @@ public class Contenedor extends JPanel {
             }
         }
 
-	@Override
+    private void moverParticulas() {
+
+        for(Particula particula: this.particulas) {
+
+            particula.moverAleatoriamente(Math.random());
+
+        }
+
+    }
+    
+    @Override
 	public void paint(Graphics g) {
+
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
 
@@ -150,8 +163,10 @@ public class Contenedor extends JPanel {
 	 */
 	public void eliminarParticulas(int cantidadDeParticulas){
 		
-		for(int i = 0; i < cantidadDeParticulas; i++){		
-			this.particulas.remove(this.particulas.size() - 1);		
+		for(int i = 0; i < cantidadDeParticulas; i++){
+
+			this.particulas.remove(this.particulas.size() - 1);
+
 		}
 		
 	}
@@ -199,10 +214,12 @@ public class Contenedor extends JPanel {
 	}
 
 	public void setLimites(int x, int y, int ancho, int alto) {
+
 		this.setX(x);
 		this.setY(x);
 		this.ancho = ancho;
 		this.alto = alto;
+
 	}
 
 	public void setVelocidadParticulas(float velocidad) {
