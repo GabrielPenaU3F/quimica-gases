@@ -67,6 +67,7 @@ public class Contenedor extends JPanel {
 
                         }
 
+                        //EN ESTE METODO ESTA EL BUG QUE HAY QUE ARREGLAR.
                         this.moverParticulas();
 
                     }
