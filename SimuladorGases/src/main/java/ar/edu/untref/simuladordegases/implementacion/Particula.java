@@ -8,19 +8,28 @@ public class Particula {
 	private int x = 0;
 	private int y = 0;
 	
-	private float velocidad;
+	private double velocidad;
 	private Color color;
 	
-	private Contenedor contenedor;
+	protected Contenedor contenedor;
 	private int altura = 10;
 	private int ancho = 10;
+
+    protected Orientacion orientacion;
 
 	public Particula(Contenedor contenedor, float vel) {
 
         this.contenedor = contenedor;
 		this.velocidad = vel;
+        this.orientacion = new OrientacionSudeste(); //Se inicializa en sudeste
 
 	}
+
+    public void mover() {
+
+        this.orientacion.mover(this);
+
+    }
 
 	/* crea un rectangulo alrededor de la pelota para hacer mas facil el metodo colision*/
 	public Rectangle getRectanguloLimite() {
@@ -36,7 +45,7 @@ public class Particula {
 
 	}
 
-	public float getVelocidad() {
+	public double getVelocidad() {
 
 		return this.velocidad;
 
@@ -89,92 +98,15 @@ public class Particula {
 
         this.y = y;
     }
-
-    public void moverNoroeste() {
-
-        this.x = calcularNuevaPosicionEnX(-this.velocidad);
-        this.y = calcularNuevaPosicionEnY(this.velocidad);
-
-    }
-
-    public void moverNoreste() {
-
-        this.x = calcularNuevaPosicionEnX(this.velocidad);
-        this.y = calcularNuevaPosicionEnY(this.velocidad);
-
-    }
-
-    public void moverSudeste() {
-
-        this.x = calcularNuevaPosicionEnX(this.velocidad);
-        this.y = calcularNuevaPosicionEnY(-this.velocidad);
-
-    }
-
-    public void moverSudoeste() {
-
-        this.x = calcularNuevaPosicionEnX(-this.velocidad);
-        this.y = calcularNuevaPosicionEnY(-this.velocidad);
-
-    }
-
-    private int calcularNuevaPosicionEnY(float movimientoEnY) {
-
-        float posicionFinalRegular = this.y + movimientoEnY;
-        if(posicionFinalRegular < 0) {
-
-            float movimientoRestanteLuegoDelChoque = movimientoEnY - this.y;
-            return (int) movimientoRestanteLuegoDelChoque;
-
-        }
-        if(posicionFinalRegular > this.contenedor.getAlto()) {
-
-            float movimientoRestanteLuegoDelChoque = movimientoEnY - (this.contenedor.getAlto() - this.y);
-            return (int) movimientoRestanteLuegoDelChoque;
-
-        }
-        return (int) posicionFinalRegular;
-
-    }
-
-    private int calcularNuevaPosicionEnX(float movimientoEnX) {
-
-        float posicionFinalRegular = this.x + movimientoEnX;
-        if(posicionFinalRegular < 0) {
-
-            float movimientoRestanteLuegoDelChoque = movimientoEnX - this.x;
-            return (int) movimientoRestanteLuegoDelChoque;
-
-        }
-        if(posicionFinalRegular > this.contenedor.getAncho()) {
-
-            float movimientoRestanteLuegoDelChoque = movimientoEnX - (this.contenedor.getAncho() - this.x);
-            return (int) movimientoRestanteLuegoDelChoque;
-
-        }
-        return (int) posicionFinalRegular;
-
+    
+    public Contenedor getContenedor() {
+        
+        return this.contenedor;
     }
     
-    public void moverAleatoriamente(double numAleatorio) {
-
-        if (numAleatorio >= 0.0 && numAleatorio < 0.25) {
-
-            this.moverNoroeste();
-
-        } else if (numAleatorio >= 0.25 && numAleatorio < 0.50) {
-
-            this.moverNoreste();
-
-        } else if (numAleatorio >= 0.50 && numAleatorio < 0.75) {
-
-            this.moverSudoeste();
-
-        } else if (numAleatorio >= 0.75 && numAleatorio < 1.0) {
-
-            this.moverSudeste();
-
-        }
+    public void setOrientacion(Orientacion orientacion) {
+        
+        this.orientacion = orientacion;
 
     }
 }

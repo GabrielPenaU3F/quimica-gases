@@ -45,23 +45,23 @@ public class Contenedor extends JPanel {
 
                             if (numAleatorio > 0.0 && numAleatorio < 0.25) {
 
-                                particulaActual.moverNoroeste();
-                                otraParticula.moverSudeste();
+                                particulaActual.setOrientacion(new OrientacionNoroeste());
+                                otraParticula.setOrientacion(new OrientacionSudeste());
 
                             } else if (numAleatorio >= 0.25 && numAleatorio < 0.50) {
 
-                                particulaActual.moverSudeste();
-                                otraParticula.moverNoroeste();
+                                particulaActual.setOrientacion(new OrientacionSudeste());
+                                otraParticula.setOrientacion(new OrientacionNoroeste());
 
                             } else if (numAleatorio >= 0.50 && numAleatorio < 0.75) {
 
-                                particulaActual.moverSudoeste();
-                                particulaActual.moverNoreste();
+                                particulaActual.setOrientacion(new OrientacionSudoeste());
+                                otraParticula.setOrientacion(new OrientacionNoreste());
 
                             } else if (numAleatorio >= 0.75 && numAleatorio < 1.0) {
 
-                                particulaActual.moverNoreste();
-                                particulaActual.moverSudoeste();
+                                particulaActual.setOrientacion(new OrientacionNoreste());
+                                otraParticula.setOrientacion(new OrientacionSudoeste());
 
                             }
 
@@ -81,7 +81,7 @@ public class Contenedor extends JPanel {
 
         for(Particula particula: this.particulas) {
 
-            particula.moverAleatoriamente(Math.random());
+            particula.mover();
 
         }
 

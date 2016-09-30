@@ -1,7 +1,6 @@
 package ar.edu.untref.simuladordegases;
 
-import ar.edu.untref.simuladordegases.implementacion.Contenedor;
-import ar.edu.untref.simuladordegases.implementacion.Particula;
+import ar.edu.untref.simuladordegases.implementacion.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +59,8 @@ public class ParticulaTest {
 
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
-        this.particula.moverNoreste();
+        this.particula.setOrientacion(new OrientacionNoreste());
+        this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
@@ -72,11 +72,13 @@ public class ParticulaTest {
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
         this.particula.setXPosicion(2);
-        this.particula.moverNoroeste();
+        this.particula.setOrientacion(new OrientacionNoroeste());
+        this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
+
 
     @Test
     public void testQueSeMueva1AlSudesteSinChocar() {
@@ -84,7 +86,8 @@ public class ParticulaTest {
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
         this.particula.setYPosicion(2);
-        this.particula.moverSudeste();
+        this.particula.setOrientacion(new OrientacionSudeste());
+        this.particula.mover();
         Assert.assertEquals(1, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
@@ -97,15 +100,16 @@ public class ParticulaTest {
         this.contenedor.setAlto(200);
         this.particula.setXPosicion(2);
         this.particula.setYPosicion(2);
-        this.particula.moverSudoeste();
+        this.particula.setOrientacion(new OrientacionSudoeste());
+        this.particula.mover();
         Assert.assertEquals(1, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
     }
 
-        /*
-        TESTS DEL MOVIMIENTO CON VELOCIDAD 5
-        */
+
+       // TESTS DEL MOVIMIENTO CON VELOCIDAD 5
+
 
     @Test
     public void testQueSeMueva5AlNoresteSinChocar() {
@@ -113,7 +117,8 @@ public class ParticulaTest {
         this.particula.setVelocidad(5);
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
-        this.particula.moverNoreste();
+        this.particula.setOrientacion(new OrientacionNoreste());
+        this.particula.mover();
         Assert.assertEquals(5, this.particula.getXPosicion(), 0.0);
         Assert.assertEquals(5, this.particula.getYPosicion(), 0.0);
 
@@ -126,7 +131,8 @@ public class ParticulaTest {
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
         this.particula.setXPosicion(6);
-        this.particula.moverNoroeste();
+        this.particula.setOrientacion(new OrientacionNoroeste());
+        this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
         Assert.assertEquals(5, this.particula.getYPosicion(), 0.0);
 
@@ -139,7 +145,8 @@ public class ParticulaTest {
         this.contenedor.setAncho(200);
         this.contenedor.setAlto(200);
         this.particula.setYPosicion(6);
-        this.particula.moverSudeste();
+        this.particula.setOrientacion(new OrientacionSudeste());
+        this.particula.mover();
         Assert.assertEquals(5, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
@@ -153,13 +160,15 @@ public class ParticulaTest {
         this.contenedor.setAlto(200);
         this.particula.setXPosicion(6);
         this.particula.setYPosicion(6);
-        this.particula.moverSudoeste();
+        this.particula.setOrientacion(new OrientacionSudoeste());
+        this.particula.mover();
         Assert.assertEquals(1, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
     }
 
-    /*TESTS DEL MOVIMIENTO ALEATORIO*/
+    /*
+    //TESTS DEL MOVIMIENTO ALEATORIO
 
     @Test
     public void testQueSeMueva5AlNoroesteConAleatorioCeroTrece() {
@@ -203,6 +212,6 @@ public class ParticulaTest {
         Assert.assertEquals(5, particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, particula.getYPosicion(), 0.0);
 
-    }
+    }*/
 
 }
