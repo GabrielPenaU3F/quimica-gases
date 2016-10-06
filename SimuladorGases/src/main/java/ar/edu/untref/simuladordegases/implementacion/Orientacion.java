@@ -1,5 +1,7 @@
 package ar.edu.untref.simuladordegases.implementacion;
 
+import static java.lang.Math.abs;
+
 /**
  * Created by synysterlove on 29/09/16.
  */
@@ -10,16 +12,16 @@ public abstract class Orientacion {
     protected int calcularNuevaPosicionEnY(Particula particula, double movimientoEnY) {
 
         double posicionFinalRegular = particula.getYPosicion() + movimientoEnY;
-        if(posicionFinalRegular - particula.getAlto()/2 < 0) {
+        if(posicionFinalRegular < 0) {
 
-            double movimientoRestanteLuegoDelChoque = movimientoEnY - particula.getYPosicion();
+            double movimientoRestanteLuegoDelChoque = abs(movimientoEnY) - abs(particula.getYPosicion());
             return (int) movimientoRestanteLuegoDelChoque;
 
         }
-        if(posicionFinalRegular + particula.getAlto()/2 > particula.getContenedor().getAlto()) {
+        if(posicionFinalRegular > particula.getContenedor().getAlto()) {
 
-            double movimientoRestanteLuegoDelChoque = -(movimientoEnY - (particula.getContenedor().getAlto() - particula.getYPosicion()));
-            return (int) movimientoRestanteLuegoDelChoque;
+            double movimientoRestanteLuegoDelChoque = abs(movimientoEnY) - abs(particula.getContenedor().getAlto() - particula.getYPosicion());
+            return (int) ((int) particula.getContenedor().getAlto() - movimientoRestanteLuegoDelChoque);
 
         }
         return (int) posicionFinalRegular;
@@ -29,16 +31,16 @@ public abstract class Orientacion {
     protected int calcularNuevaPosicionEnX(Particula particula, double movimientoEnX) {
 
         double posicionFinalRegular = particula.getXPosicion() + movimientoEnX;
-        if(posicionFinalRegular - particula.getAncho()/2 < 0) {
+        if(posicionFinalRegular < 0) {
 
-            double movimientoRestanteLuegoDelChoque = movimientoEnX - particula.getXPosicion();
+            double movimientoRestanteLuegoDelChoque = abs(movimientoEnX) - abs(particula.getXPosicion());
             return (int) movimientoRestanteLuegoDelChoque;
 
         }
-        if(posicionFinalRegular + particula.getAncho()/2 > particula.getContenedor().getAncho()) {
+        if(posicionFinalRegular > particula.getContenedor().getAncho()) {
 
-            double movimientoRestanteLuegoDelChoque = -(movimientoEnX - (particula.getContenedor().getAncho() - particula.getXPosicion()));
-            return (int) movimientoRestanteLuegoDelChoque;
+            double movimientoRestanteLuegoDelChoque = abs(movimientoEnX) - abs(particula.getContenedor().getAncho() - particula.getXPosicion());
+            return (int) ((int) particula.getContenedor().getAncho() - movimientoRestanteLuegoDelChoque);
 
         }
         return (int) posicionFinalRegular;

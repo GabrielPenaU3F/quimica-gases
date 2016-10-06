@@ -167,51 +167,49 @@ public class ParticulaTest {
 
     }
 
-    /*
-    //TESTS DEL MOVIMIENTO ALEATORIO
+    /* TESTS DE COLISIONES CONTRA LAS PAREDES */
 
     @Test
-    public void testQueSeMueva5AlNoroesteConAleatorioCeroTrece() {
+    public void testQueChoqueYReboteAlSudoesteDesde0() {
 
         this.particula.setVelocidad(5);
-        this.particula.setXPosicion(6);
-        this.particula.moverAleatoriamente(0.13);
-        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(5, particula.getYPosicion(), 0.0);
-
-    }
-
-    @Test
-    public void testQueSeMueva5AlNoresteConAleatorioCeroCuarenta() {
-
-        this.particula.setVelocidad(5);
-        this.particula.moverAleatoriamente(0.40);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setOrientacion(new OrientacionSudoeste());
+        this.particula.mover();
         Assert.assertEquals(5, particula.getXPosicion(), 0.0);
         Assert.assertEquals(5, particula.getYPosicion(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva5AlSudoesteConAleatorioCeroSesenta() {
+    public void testQueDesdeCincoCincoChoqueYReboteAlSudoesteHastaDosDos() {
 
-        this.particula.setVelocidad(5);
-        this.particula.setXPosicion(6);
-        this.particula.setYPosicion(6);
-        this.particula.moverAleatoriamente(0.60);
-        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+        this.particula.setVelocidad(7);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setXPosicion(5);
+        this.particula.setYPosicion(5);
+        this.particula.setOrientacion(new OrientacionSudoeste());
+        this.particula.mover();
+        Assert.assertEquals(2, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(2, particula.getYPosicion(), 0.0);
 
     }
 
     @Test
-    public void testQueSeMueva5AlSudesteConAleatorioCeroNoventa() {
+    public void testQueDesdeCientoOchentaYCientoOchentaChoqueYReboteAlNoresteHastaElMismoPunto() {
 
-        this.particula.setVelocidad(5);
-        this.particula.setYPosicion(6);
-        this.particula.moverAleatoriamente(0.90);
-        Assert.assertEquals(5, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+        this.particula.setVelocidad(40);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
+        this.particula.setXPosicion(180);
+        this.particula.setYPosicion(180);
+        this.particula.setOrientacion(new OrientacionNoreste());
+        this.particula.mover();
+        Assert.assertEquals(180, particula.getXPosicion(), 0.0);
+        Assert.assertEquals(180, particula.getYPosicion(), 0.0);
 
-    }*/
+    }
 
 }
