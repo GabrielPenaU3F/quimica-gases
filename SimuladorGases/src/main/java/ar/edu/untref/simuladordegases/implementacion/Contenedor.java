@@ -16,76 +16,14 @@ public class Contenedor extends JPanel {
 	private int y;
 	private double numAleatorio;
     private float temperatura;
+    private Agitador agitador;
 
 	public Contenedor(){
-		this.particulas = new LinkedList<Particula>();
+
+        this.particulas = new LinkedList<Particula>();
+        this.agitador = new Agitador();
 	}
 
-
-	        //Este metodo puede mejorarse mucho
-			public void agitar() {
-
-            //Se posiciona en cada partícula de la lista.
-            for (int i = 0; i < this.particulas.size(); i++) {
-
-                numAleatorio = Math.random();
-                Particula particulaActual = this.particulas.get(i);
-
-                //Se posiciona en otra partícula de la lista.
-                for (int j = 0; j < this.particulas.size(); j++) {
-
-                    // Si i es diferente de j porque una partícula no se va a colisionar con ella misma
-                    // por eso no tiene sentido probar el if(colisión) si i es igual a j.
-                    if (i != j) {
-
-                        Particula otraParticula = this.particulas.get(j);
-
-                        //Verifica la condicion de colision
-                        if (hayChoqueEntre(particulaActual, otraParticula)) {
-
-                            if (numAleatorio > 0.0 && numAleatorio < 0.25) {
-
-                                particulaActual.setOrientacion(new OrientacionNoroeste());
-                                otraParticula.setOrientacion(new OrientacionSudeste());
-
-                            } else if (numAleatorio >= 0.25 && numAleatorio < 0.50) {
-
-                                particulaActual.setOrientacion(new OrientacionSudeste());
-                                otraParticula.setOrientacion(new OrientacionNoroeste());
-
-                            } else if (numAleatorio >= 0.50 && numAleatorio < 0.75) {
-
-                                particulaActual.setOrientacion(new OrientacionSudoeste());
-                                otraParticula.setOrientacion(new OrientacionNoreste());
-
-                            } else if (numAleatorio >= 0.75 && numAleatorio < 1.0) {
-
-                                particulaActual.setOrientacion(new OrientacionNoreste());
-                                otraParticula.setOrientacion(new OrientacionSudoeste());
-
-                            }
-
-                        }
-
-                        //EN ESTE METODO ESTA EL BUG QUE HAY QUE ARREGLAR.
-                        this.moverParticulas();
-
-                    }
-
-                }
-
-            }
-        }
-
-    private void moverParticulas() {
-
-        for(Particula particula: this.particulas) {
-
-            particula.mover();
-
-        }
-
-    }
     
     @Override
 	public void paint(Graphics g) {
@@ -103,7 +41,7 @@ public class Contenedor extends JPanel {
 	public void precipitar() throws InterruptedException{
 
 		while (true) {
-			this.agitar();
+			this.agitador.agitar(this.particulas);
 			this.repaint();	
 			Thread.sleep(10);
 		}			
