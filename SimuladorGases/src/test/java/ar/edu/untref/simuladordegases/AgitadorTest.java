@@ -52,4 +52,77 @@ public class AgitadorTest {
 
     }
 
+    @Test
+    public void testConCeroTreintaYSieteLasParticulasSeVanSudesteYNoroesteSegunVelocidad() {
+
+        Particula unaParticula = new Particula(this.contenedor, 1);
+        Particula otraParticula = new Particula(this.contenedor, 1);
+        unaParticula.setXPosicion(5);
+        unaParticula.setYPosicion(5);
+        otraParticula.setXPosicion(5);
+        otraParticula.setYPosicion(5);
+
+        this.agitador.chocarAleatoriamente(unaParticula, otraParticula, 0.37);
+        List<Particula> particulas = new LinkedList<Particula>();
+        particulas.add(unaParticula);
+        particulas.add(otraParticula);
+        this.agitador.moverParticulas(particulas);
+
+        Assert.assertEquals(6, unaParticula.getXPosicion(), 0.0);
+        Assert.assertEquals(4, unaParticula.getYPosicion(), 0.0);
+
+        Assert.assertEquals(4, otraParticula.getXPosicion(), 0.0);
+        Assert.assertEquals(6, otraParticula.getYPosicion(), 0.0);
+
+    }
+
+
+    @Test
+    public void testConCeroSesentaYCuatroLasParticulasSeVanSudoesteYNoresteSegunVelocidad() {
+
+        Particula unaParticula = new Particula(this.contenedor, 1);
+        Particula otraParticula = new Particula(this.contenedor, 1);
+        unaParticula.setXPosicion(5);
+        unaParticula.setYPosicion(5);
+        otraParticula.setXPosicion(5);
+        otraParticula.setYPosicion(5);
+
+        this.agitador.chocarAleatoriamente(unaParticula, otraParticula, 0.64);
+        List<Particula> particulas = new LinkedList<Particula>();
+        particulas.add(unaParticula);
+        particulas.add(otraParticula);
+        this.agitador.moverParticulas(particulas);
+
+        Assert.assertEquals(4, unaParticula.getXPosicion(), 0.0);
+        Assert.assertEquals(4, unaParticula.getYPosicion(), 0.0);
+
+        Assert.assertEquals(6, otraParticula.getXPosicion(), 0.0);
+        Assert.assertEquals(6, otraParticula.getYPosicion(), 0.0);
+
+    }
+
+    @Test
+    public void testConCeroOchentaYNueveLasParticulasSeVanYNoresteYSudoesteSegunVelocidad() {
+
+        Particula unaParticula = new Particula(this.contenedor, 1);
+        Particula otraParticula = new Particula(this.contenedor, 1);
+        unaParticula.setXPosicion(5);
+        unaParticula.setYPosicion(5);
+        otraParticula.setXPosicion(5);
+        otraParticula.setYPosicion(5);
+
+        this.agitador.chocarAleatoriamente(unaParticula, otraParticula, 0.89);
+        List<Particula> particulas = new LinkedList<Particula>();
+        particulas.add(unaParticula);
+        particulas.add(otraParticula);
+        this.agitador.moverParticulas(particulas);
+
+        Assert.assertEquals(6, unaParticula.getXPosicion(), 0.0);
+        Assert.assertEquals(6, unaParticula.getYPosicion(), 0.0);
+
+        Assert.assertEquals(4, otraParticula.getXPosicion(), 0.0);
+        Assert.assertEquals(4, otraParticula.getYPosicion(), 0.0);
+
+    }
+
 }
