@@ -12,7 +12,7 @@ public abstract class Orientacion {
     protected int calcularNuevaPosicionEnY(Particula particula, double movimientoEnY) {
 
         double posicionFinalRegular = particula.getYPosicion() + movimientoEnY;
-        if(posicionFinalRegular < 0) {
+        if(posicionFinalRegular < particula.getContenedor().getOrigenY()) {
 
             double movimientoRestanteLuegoDelChoque = abs(movimientoEnY) - abs(particula.getYPosicion());
             return (int) movimientoRestanteLuegoDelChoque;
@@ -31,7 +31,7 @@ public abstract class Orientacion {
     protected int calcularNuevaPosicionEnX(Particula particula, double movimientoEnX) {
 
         double posicionFinalRegular = particula.getXPosicion() + movimientoEnX;
-        if(posicionFinalRegular < 0) {
+        if(posicionFinalRegular < particula.getContenedor().getOrigenX()) {
 
             double movimientoRestanteLuegoDelChoque = abs(movimientoEnX) - abs(particula.getXPosicion());
             return (int) movimientoRestanteLuegoDelChoque;

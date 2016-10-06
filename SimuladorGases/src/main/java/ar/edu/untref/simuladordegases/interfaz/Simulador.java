@@ -1,5 +1,6 @@
 package ar.edu.untref.simuladordegases.interfaz;
 
+import ar.edu.untref.simuladordegases.implementacion.CalculadoraGasesIdeales;
 import ar.edu.untref.simuladordegases.implementacion.Contenedor;
 
 import javax.swing.*;
@@ -19,12 +20,13 @@ public class Simulador extends JFrame {
 	 * Atributos
 	 */
 	private static final long serialVersionUID = 1L;
-	private String presion = "12.300";
+	private double presion = 12.300;
 	private Integer moles = 25;
-	private Float temperatura = (float) 300;
+	private double temperatura = 300;
 	private Integer volumen = 50;	
 	private Color colorDePresion;
     private Map<String, JComponent> componentes;
+    private CalculadoraGasesIdeales calculadoraGases;
 	
 	/**
 	 * Launch the application.
@@ -37,7 +39,8 @@ public class Simulador extends JFrame {
         Simulador simulador = this; //Para hacerlo mas visible
         construirLayout(simulador);
         SpringLayout springLayout = (SpringLayout)simulador.getContentPane().getLayout();
-        componentes = new HashMap<String, JComponent>();
+        this.componentes = new HashMap<String, JComponent>();
+        this.calculadoraGases = new CalculadoraGasesIdeales();
 
         construirComponentesVisuales(simulador, springLayout);
     }
@@ -106,7 +109,7 @@ public class Simulador extends JFrame {
                 springLayout.putConstraint(SpringLayout.SOUTH, simulador.componentes.get("ContenedorParticulas"), nuevoBordeSur, SpringLayout.NORTH, simulador.getContentPane());
                 springLayout.putConstraint(SpringLayout.EAST, simulador.componentes.get("ContenedorParticulas"), nuevoBordeEste, SpringLayout.WEST, simulador.getContentPane());
                 //Modificación de la etiqueta de presion
-                ((JLabel)simulador.componentes.get("IndicadorDePresion")).setText(simulador.getPresion() + " atm.");
+                ((JLabel)simulador.componentes.get("IndicadorDePresion")).setText(simulador.getPresionFormateada() + " atm.");
                 simulador.componentes.get("IndicadorDePresion").setForeground(simulador.getColorDePresion());
 
             }
@@ -309,23 +312,18 @@ public class Simulador extends JFrame {
 	private void actualizar()
     {
 
-		this.presion = this.leyDeGasesIdeales();
+		this.presion = this.calculadoraGases.calcularPresion(this.getMoles(), this.getTemperatura(), this.getVolumen());
+        this.calcularColorSegunPresion();
 
 	}
 	
 	/**
 	 * Calculo de presion basado en la Ley de los Gases Ideales
 	 */
-	public String leyDeGasesIdeales(){
-		Float constanteDeGases = new Float(0.082);
-		Float presionResultante = (this.getMoles() * constanteDeGases * this.getTemperatura())/this.getVolumen();
-		this.calcularColorDePresion(presionResultante);
-		DecimalFormat numberFormat = new DecimalFormat("#.000");
-		return numberFormat.format(presionResultante);
-	}
+
 	
-	private void calcularColorDePresion(float PresionResultante) {
-		Integer verde = (int) (255.0 * ((PresionResultante - 0.082) / 164.0));
+	private void calcularColorSegunPresion() {
+		Integer verde = (int) (255.0 * ((this.getPresion() - 0.082) / 164.0));
 		Color colorDePresion = new Color(255, 255 - verde, 0);	
 		this.setColorDePresion(colorDePresion);
 	}
@@ -334,32 +332,41 @@ public class Simulador extends JFrame {
 		return moles;
 	}
 
-	public void setMoles(Integer moles) {
+	public void setMoles(int moles) {
 		this.moles = moles;
 	}
 
-	public Float getTemperatura() {
-		return temperatura;
+	public double getTemperatura() {
+		return this.temperatura;
 	}
 
-	public void setTemperatura(Float temperatura) {
+	public void setTemperatura(double temperatura) {
 		this.temperatura = temperatura;
 	}
 
 	public int getVolumen() {
-		return volumen;
+		return this.volumen;
 	}
 
 	public void setVolumen(int volumen) {
 		this.volumen = volumen;
 	}
 
-	public String getPresion() {
-		return presion;
+	public String getPresionFormateada() {
+
+        DecimalFormat numberFormat = new DecimalFormat("#.000");
+        return numberFormat.format(this.presion);
+
 	}
 
+    public double getPresion() {
+
+        return this.presion;
+
+    }
+
 	public Color getColorDePresion() {
-		return colorDePresion;
+		return this.colorDePresion;
 	}
 
 	public void setColorDePresion(Color colorDePresion) {

@@ -51,7 +51,7 @@ public class Particula {
 
 	}
 
-	public void setVelocidad(float velocidad) {
+	public void setVelocidad(double velocidad) {
 
         this.velocidad = velocidad;
 

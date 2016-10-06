@@ -12,10 +12,9 @@ public class Contenedor extends JPanel {
 
 	private int ancho;
 	private int alto;
-	private int x;
-	private int y;
-	private double numAleatorio;
-    private float temperatura;
+	private int origen_x;
+	private int origen_y;
+    private double temperatura;
     private Agitador agitador;
 
 	public Contenedor(){
@@ -48,8 +47,9 @@ public class Contenedor extends JPanel {
 	}	
 
 	/** Modifica la temperatura del contenedor
-	 */
-	public void modificarTemperaturaDeParticulas(float temperatura){
+     * @param temperatura
+     */
+	public void modificarTemperaturaDeParticulas(double temperatura){
 
         this.temperatura = temperatura;
 
@@ -110,30 +110,20 @@ public class Contenedor extends JPanel {
 		
 	}
 
-    /** El metodo colision tendria que detectar que se esta chocando contra algo (objeto o pared)
-     * y la pelota tendria que cambiar el sentido en el que rebota
-     * por otro lado, el metodo intersects devuelve true si el obj de la izquierda se choca con el de la derecha
-     * */
-    private boolean hayChoqueEntre(Particula particula, Particula otraParticula) {
-
-        return particula.getRectanguloLimite().intersects(otraParticula.getRectanguloLimite());
-
-    }
-
-	public int getX() {
-		return x;
+	public int getOrigenX() {
+		return this.origen_x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
+	public void setOrigenX(int x) {
+		this.origen_x = x;
 	}
 
-	public int getY() {
-		return y;
+	public int getOrigenY() {
+		return this.origen_y;
 	}
 
-	public void setY(int y) {
-		this.y = y;
+	public void setOrigenY(int y) {
+		this.origen_y = y;
 	}
 
 	public int getAncho(){
@@ -154,14 +144,14 @@ public class Contenedor extends JPanel {
 
 	public void setLimites(int x, int y, int ancho, int alto) {
 
-		this.setX(x);
-		this.setY(x);
+		this.setOrigenX(x);
+		this.setOrigenY(y);
 		this.ancho = ancho;
 		this.alto = alto;
 
 	}
 
-	public void setVelocidadParticulas(float velocidad) {
+	public void setVelocidadParticulas(double velocidad) {
 
 		for (Particula particula : this.particulas) {
 
