@@ -62,7 +62,7 @@
                   <archive>
                     <manifest>
                       <addClasspath>true</addClasspath>
-                      <mainClass>ar.edu.untref.simuladordegases.Program</mainClass>
+                      <mainClass>ar.edu.untref.simuladordegases.implementacion.Program</mainClass>
                     </manifest>
                   </archive>
                 </configuration>
