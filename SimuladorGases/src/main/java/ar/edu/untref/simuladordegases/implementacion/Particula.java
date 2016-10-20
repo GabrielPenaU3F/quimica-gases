@@ -17,7 +17,7 @@ public class Particula {
 
     protected Orientacion orientacion;
 
-	public Particula(Contenedor contenedor, double vel) {
+    public Particula(Contenedor contenedor, double vel) {
 
         this.contenedor = contenedor;
 		this.velocidad = vel;

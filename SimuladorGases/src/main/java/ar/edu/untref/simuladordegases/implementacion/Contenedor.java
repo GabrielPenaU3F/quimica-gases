@@ -64,7 +64,7 @@ public class Contenedor extends JPanel {
 		Integer verde = (int) (255.0 * ((this.temperatura - 100.0) / 500.0));
 		return new Color(255, 255 - verde, 0);
 
-	}
+    }
 
 	/**
 	 * Modifica cantidad de particulas
