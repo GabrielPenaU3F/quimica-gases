@@ -61,7 +61,7 @@ public class Contenedor extends JPanel {
 
 	private Color calcularColorDeParticulas() {
 
-		Integer verde = (int) (255.0 * ((temperatura - 100.0) / 500.0));
+		Integer verde = (int) (255.0 * ((this.temperatura - 100.0) / 500.0));
 		return new Color(255, 255 - verde, 0);
 
 	}
@@ -172,4 +172,19 @@ public class Contenedor extends JPanel {
 
 	}
 
+    public void agregarParticula(Particula particula) {
+
+        this.particulas.add(particula);
+
+    }
+    
+    public double getTemperatura() {
+        
+        return this.temperatura;
+    }
+
+    public List<Particula> getParticulas() {
+
+        return this.particulas;
+    }
 }
