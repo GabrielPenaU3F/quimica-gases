@@ -58,5 +58,26 @@ public class ContenedorTest {
 
         }
     }
-    
+
+    @Test
+    public void testQueAgregueDiezParticulas() {
+
+        this.contenedor.agregarParticulas(10);
+        Assert.assertEquals(30, this.contenedor.getParticulas().size());
+
+    }
+
+    /*
+    @Test
+    public void testLasParticulasAgregadasSeanDelColorCorrecto() {
+
+        this.contenedor.agregarParticulas(10);
+        Color color = new Color(255,255*200/500,0);
+        for(Particula particula: this.contenedor.getParticulas()) {
+
+            Assert.assertEquals(color, particula.getColor());
+
+        }
+    }*/
+
 }

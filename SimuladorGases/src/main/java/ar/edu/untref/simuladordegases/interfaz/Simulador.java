@@ -21,9 +21,9 @@ public class Simulador extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private double presion = 12.300;
-    private Integer moles = 25;
+    private int moles = 25;
 	private double temperatura = 300;
-	private Integer volumen = 50;	
+	private int volumen = 50;	
 	private Color colorDePresion;
     private Map<String, JComponent> componentes;
     private CalculadoraGasesIdeales calculadoraGases;
@@ -102,8 +102,8 @@ public class Simulador extends JFrame {
                 //Modificación de la cantidad de moles de gas
                 ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarCantidadDeMoles(simulador.getMoles());
                 //Modificación del volumen del recipiente
-                Integer nuevoBordeSur = (int) (550 * (simulador.getVolumen()/100.0));
-                Integer nuevoBordeEste = (int) (450 * (simulador.getVolumen()/100.0));
+                int nuevoBordeSur = (int) (550 * (simulador.getVolumen()/100.0));
+                int nuevoBordeEste = (int) (450 * (simulador.getVolumen()/100.0));
                 ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAncho(nuevoBordeEste - 70);
                 ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAlto(nuevoBordeSur - 100);
                 springLayout.putConstraint(SpringLayout.SOUTH, simulador.componentes.get("ContenedorParticulas"), nuevoBordeSur, SpringLayout.NORTH, simulador.getContentPane());
@@ -323,12 +323,12 @@ public class Simulador extends JFrame {
 
 	
 	private void calcularColorSegunPresion() {
-		Integer verde = (int) (255.0 * ((this.getPresion() - 0.082) / 164.0));
+		int verde = (int) (255.0 * ((this.getPresion() - 0.082) / 164.0));
 		Color colorDePresion = new Color(255, 255 - verde, 0);	
 		this.setColorDePresion(colorDePresion);
 	}
 
-	public Integer getMoles() {
+	public int getMoles() {
 		return moles;
 	}
 

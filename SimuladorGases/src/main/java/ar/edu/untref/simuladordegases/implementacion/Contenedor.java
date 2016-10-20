@@ -21,6 +21,8 @@ public class Contenedor extends JPanel {
 
         this.particulas = new LinkedList<Particula>();
         this.agitador = new Agitador();
+        this.temperatura = 300;
+
 	}
 
     

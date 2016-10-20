@@ -4,6 +4,9 @@ import java.awt.*;
 
 public class Particula {
 
+    //La masa es la de la molecula de hidrogeno
+    private double masa = 1.007;
+
 	//Posicion de la pelota en el contenedor
 	private int x = 0;
 	private int y = 0;
