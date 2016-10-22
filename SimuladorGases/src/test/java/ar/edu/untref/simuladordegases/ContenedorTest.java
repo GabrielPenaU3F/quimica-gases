@@ -52,7 +52,7 @@ public class ContenedorTest {
 
         this.contenedor.modificarTemperatura(100);
         Color color = new Color(255,255,0);
-        for(Particula particula: this.contenedor.getParticulas()) {
+        for(Particula particula : this.contenedor.getParticulas()) {
 
             Assert.assertEquals(color, particula.getColor());
 
@@ -67,17 +67,16 @@ public class ContenedorTest {
 
     }
 
-    /*
     @Test
     public void testLasParticulasAgregadasSeanDelColorCorrecto() {
 
         this.contenedor.agregarParticulas(10);
-        Color color = new Color(255,255*200/500,0);
-        for(Particula particula: this.contenedor.getParticulas()) {
+        Color color = new Color(255, 255 - (255*200/500), 0);
+        for(Particula particula : this.contenedor.getParticulas()) {
 
             Assert.assertEquals(color, particula.getColor());
 
         }
-    }*/
+    }
 
 }

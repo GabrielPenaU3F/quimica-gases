@@ -20,8 +20,8 @@ public class Simulador extends JFrame {
 	 * Atributos
 	 */
 	private static final long serialVersionUID = 1L;
-	private double presion = 12.300;
-	private Integer moles = 25;
+	private double presion = 12.309;
+	private Integer moles = 50;
 	private double temperatura = 300;
 	private Integer volumen = 50;
 	private Color colorDePresion;

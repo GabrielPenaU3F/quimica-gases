@@ -5,6 +5,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.awt.*;
+
 /**
  * Created by synysterlove on 23/09/16.
  */
@@ -45,9 +47,17 @@ public class ParticulaTest {
     }
 
     @Test
-    public void testQueLaParticulaSeCreeConVelocidadDefault1() {
+    public void testQueLaParticulaSeCreeConVelocidadDefault1A300Kelvin() {
 
         Assert.assertEquals(1, this.particula.getVelocidad(), 0.0);
+
+    }
+
+    @Test
+    public void testQueLaParticulaSeCreeConColorDefaultNaranjaA300Kelvin() {
+
+        Color color = new Color(255, 255 - (255*200/500), 0);
+        Assert.assertEquals(color, this.particula.getColor());
 
     }
 

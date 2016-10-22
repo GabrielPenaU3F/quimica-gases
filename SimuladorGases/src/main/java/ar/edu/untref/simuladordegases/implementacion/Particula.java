@@ -30,9 +30,17 @@ public class Particula {
         this.energia = new Energia();
         this.energia.calcularEnergiaCineticaTotal(this.contenedor.getTemperatura());
         this.velocidad = this.calcularVelocidad();
+        this.color = this.calcularColor(this.contenedor.getTemperatura());
 
 	}
+    
+    private Color calcularColor(double temperatura) {
 
+        Integer verde = (int) (255.0 * ((temperatura - 100.0) / 500.0));
+        return new Color(255, 255 - verde, 0);
+
+    }
+    
     private double calcularVelocidad() {
 
         /* Velocidad real es la velocidad fisica segun la teoria cinetica
@@ -85,12 +93,6 @@ public class Particula {
 
 	}
 
-	public void setColor(Color color) {
-
-		this.color = color;
-
-	}
-
     public int getAncho() {
 
         return this.ancho;
@@ -129,6 +131,12 @@ public class Particula {
     public void setOrientacion(Orientacion orientacion) {
         
         this.orientacion = orientacion;
+
+    }
+
+    public void actualizarColor() {
+
+        this.color = calcularColor(this.contenedor.getTemperatura());
 
     }
 }

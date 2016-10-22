@@ -61,14 +61,6 @@ public class Contenedor extends JPanel {
 
 	}
 
-    //TODO: CAMBIAR URGENTE LA FORMULA DEL COLOR, DA CUALQUIER COSA
-	private Color calcularColorDeParticulas() {
-
-		Integer verde = (int) (255.0 * ((this.temperatura - 100.0) / 500.0));
-		return new Color(255, 255 - verde, 0);
-
-    }
-
 	/**
 	 * Modifica cantidad de particulas
 	 */	
@@ -93,7 +85,6 @@ public class Contenedor extends JPanel {
 		for(int i = 0; i < cantidadDeParticulas; i++){
 
             Particula particula = new Particula(this);
-            particula.setColor(this.calcularColorDeParticulas());
 			this.particulas.add(particula);
 
 		}
@@ -166,10 +157,9 @@ public class Contenedor extends JPanel {
 
 	public void setColorDeParticulas() {
 
-        Color color = this.calcularColorDeParticulas();
 		for(Particula particula : this.particulas) {
 
-            particula.setColor(color);
+            particula.actualizarColor();
 
         }
 
