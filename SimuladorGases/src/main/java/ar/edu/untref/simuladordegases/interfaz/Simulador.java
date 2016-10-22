@@ -180,7 +180,7 @@ public class Simulador extends JFrame {
         });
         sliderTemperatura.setMaximum(600);
         sliderTemperatura.setMinimum(100);
-        sliderTemperatura.setValue(350);
+        sliderTemperatura.setValue(300);
         sliderTemperatura.setMajorTickSpacing(100);
         sliderTemperatura.setMinorTickSpacing(50);
         sliderTemperatura.setPaintTicks(true);

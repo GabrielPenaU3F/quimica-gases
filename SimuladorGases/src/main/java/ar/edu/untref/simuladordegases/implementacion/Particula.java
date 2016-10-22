@@ -19,6 +19,8 @@ public class Particula {
 	private int altura = 10;
 	private int ancho = 10;
 
+    private final double constanteProporcionalidadVelocidad = 3.603424558562339;
+
     protected Orientacion orientacion;
 
     public Particula(Contenedor contenedor) {
@@ -33,7 +35,14 @@ public class Particula {
 
     private double calcularVelocidad() {
 
-        double velocidad = Math.sqrt(2 * this.energia.getEnergiaCinetica() / this.masa);
+        /* Velocidad real es la velocidad fisica segun la teoria cinetica
+        Velocidad es un numero que nosotros usamos, proporcional a esa
+        velocidad real, para ajustarnos a los limites de temperatura establecidos
+         Especificamente: la constante es tal que a 300K
+         la particula tiene velocidad 1
+         */
+        double velocidadReal = Math.sqrt(2 * this.energia.getEnergiaCinetica() / this.masa);
+        double velocidad = velocidadReal * constanteProporcionalidadVelocidad;
         return velocidad;
 
     }
