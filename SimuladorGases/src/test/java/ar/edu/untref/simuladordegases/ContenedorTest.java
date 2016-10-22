@@ -112,4 +112,15 @@ public class ContenedorTest {
 
     }
 
+    @Test
+    public void testQueSeModifiquenCorrectamenteLosLimitesDelContenedor() {
+
+        this.contenedor.setLimites(10,10,100,100);
+        Assert.assertEquals(10, this.contenedor.getOrigenX());
+        Assert.assertEquals(10, this.contenedor.getOrigenY());
+        Assert.assertEquals(100, this.contenedor.getAncho());
+        Assert.assertEquals(100, this.contenedor.getAlto());
+
+    }
+
 }
