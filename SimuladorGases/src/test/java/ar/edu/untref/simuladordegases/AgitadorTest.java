@@ -13,6 +13,7 @@ import java.util.List;
 /**
  * Created by synysterlove on 06/10/16.
  */
+//TODO: CORREGIR URGENTE LOS NUMEROS DE LOS TEST PORQUE AHORA LA VELOCIDAD SE CALCULA DISTINTO
 public class AgitadorTest {
 
     private Agitador agitador;
@@ -31,8 +32,8 @@ public class AgitadorTest {
     @Test
     public void testConCeroOnceLasParticulasSeVanNoroesteYSudesteSegunVelocidad() {
 
-        Particula unaParticula = new Particula(this.contenedor, 1);
-        Particula otraParticula = new Particula(this.contenedor, 1);
+        Particula unaParticula = new Particula(this.contenedor);
+        Particula otraParticula = new Particula(this.contenedor);
         unaParticula.setXPosicion(5);
         unaParticula.setYPosicion(5);
         otraParticula.setXPosicion(5);
@@ -55,8 +56,8 @@ public class AgitadorTest {
     @Test
     public void testConCeroTreintaYSieteLasParticulasSeVanSudesteYNoroesteSegunVelocidad() {
 
-        Particula unaParticula = new Particula(this.contenedor, 1);
-        Particula otraParticula = new Particula(this.contenedor, 1);
+        Particula unaParticula = new Particula(this.contenedor);
+        Particula otraParticula = new Particula(this.contenedor);
         unaParticula.setXPosicion(5);
         unaParticula.setYPosicion(5);
         otraParticula.setXPosicion(5);
@@ -80,8 +81,8 @@ public class AgitadorTest {
     @Test
     public void testConCeroSesentaYCuatroLasParticulasSeVanSudoesteYNoresteSegunVelocidad() {
 
-        Particula unaParticula = new Particula(this.contenedor, 1);
-        Particula otraParticula = new Particula(this.contenedor, 1);
+        Particula unaParticula = new Particula(this.contenedor);
+        Particula otraParticula = new Particula(this.contenedor);
         unaParticula.setXPosicion(5);
         unaParticula.setYPosicion(5);
         otraParticula.setXPosicion(5);
@@ -104,8 +105,8 @@ public class AgitadorTest {
     @Test
     public void testConCeroOchentaYNueveLasParticulasSeVanYNoresteYSudoesteSegunVelocidad() {
 
-        Particula unaParticula = new Particula(this.contenedor, 1);
-        Particula otraParticula = new Particula(this.contenedor, 1);
+        Particula unaParticula = new Particula(this.contenedor);
+        Particula otraParticula = new Particula(this.contenedor);
         unaParticula.setXPosicion(5);
         unaParticula.setYPosicion(5);
         otraParticula.setXPosicion(5);

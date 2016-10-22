@@ -6,6 +6,7 @@ public class Particula {
 
     //La masa es la de la molecula de hidrogeno
     private double masa = 1.007;
+    private Energia energia;
 
 	//Posicion de la pelota en el contenedor
 	private int x = 0;
@@ -18,15 +19,41 @@ public class Particula {
 	private int altura = 10;
 	private int ancho = 10;
 
+    private final double constanteProporcionalidadVelocidad = 3.603424558562339;
+
     protected Orientacion orientacion;
 
-    public Particula(Contenedor contenedor, double vel) {
+    public Particula(Contenedor contenedor) {
 
         this.contenedor = contenedor;
-		this.velocidad = vel;
         this.orientacion = new OrientacionSudeste(); //Se inicializa en sudeste
+        this.energia = new Energia();
+        this.energia.calcularEnergiaCineticaTotal(this.contenedor.getTemperatura());
+        this.velocidad = this.calcularVelocidad();
+        this.color = this.calcularColor(this.contenedor.getTemperatura());
 
 	}
+    
+    private Color calcularColor(double temperatura) {
+
+        Integer verde = (int) (255.0 * ((temperatura - 100.0) / 500.0));
+        return new Color(255, 255 - verde, 0);
+
+    }
+    
+    private double calcularVelocidad() {
+
+        /* Velocidad real es la velocidad fisica segun la teoria cinetica
+        Velocidad es un numero que nosotros usamos, proporcional a esa
+        velocidad real, para ajustarnos a los limites de temperatura establecidos
+         Especificamente: la constante es tal que a 300K
+         la particula tiene velocidad 1
+         */
+        double velocidadReal = Math.sqrt(2 * this.energia.getEnergiaCinetica() / this.masa);
+        double velocidad = velocidadReal * constanteProporcionalidadVelocidad;
+        return velocidad;
+
+    }
 
     public void mover() {
 
@@ -63,12 +90,6 @@ public class Particula {
 	public Color getColor() {
 
 		return color;
-
-	}
-
-	public void setColor(Color color) {
-
-		this.color = color;
 
 	}
 
@@ -110,6 +131,12 @@ public class Particula {
     public void setOrientacion(Orientacion orientacion) {
         
         this.orientacion = orientacion;
+
+    }
+
+    public void actualizarColor() {
+
+        this.color = calcularColor(this.contenedor.getTemperatura());
 
     }
 }
