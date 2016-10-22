@@ -1,3 +1,15 @@
+Repositorio original:
+
+https://github.com/juliani2/SimuladorLeyesDeGasesIdeales
+
+Autores originales: 
+-Julian Moreno
+-Gonzalo Cozzi
+-Gonzalo Nahuel Di Pierro
+
+Refactoring:
+-Gabriel Pena
+
 Issues conocidas:
 
 -La primer pelotita en el contenedor nunca se pinta del color correspondiente. De todas maneras, se ha pedido especialmente uqe este bug no sea corregido, ya que ayuda a seguir una pelotita en particular y ver como se producen los choques.
