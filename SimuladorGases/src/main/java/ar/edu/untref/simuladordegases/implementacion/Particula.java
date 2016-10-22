@@ -6,6 +6,7 @@ public class Particula {
 
     //La masa es la de la molecula de hidrogeno
     private double masa = 1.007;
+    private Energia energia;
 
 	//Posicion de la pelota en el contenedor
 	private int x = 0;
@@ -20,13 +21,22 @@ public class Particula {
 
     protected Orientacion orientacion;
 
-    public Particula(Contenedor contenedor, double vel) {
+    public Particula(Contenedor contenedor) {
 
         this.contenedor = contenedor;
-		this.velocidad = vel;
         this.orientacion = new OrientacionSudeste(); //Se inicializa en sudeste
+        this.energia = new Energia();
+        this.energia.calcularEnergiaCineticaTotal(this.contenedor.getTemperatura());
+        this.velocidad = this.calcularVelocidad();
 
 	}
+
+    private double calcularVelocidad() {
+
+        double velocidad = Math.sqrt(2 * this.energia.getEnergiaCinetica() / this.masa);
+        return velocidad;
+
+    }
 
     public void mover() {
 

@@ -21,7 +21,7 @@ public class ContenedorTest {
         this.contenedor = new Contenedor();
         for(int i=0; i < 20; i++) {
 
-            Particula particula = new Particula(contenedor, 1);
+            Particula particula = new Particula(contenedor);
             contenedor.agregarParticula(particula);
 
         }
@@ -31,7 +31,7 @@ public class ContenedorTest {
     @Test
     public void testQueModifiqueCorrectamenteLaTemperaturaDelContenedorAlCambiarla() {
 
-        this.contenedor.modificarTemperaturaDeParticulas(100);
+        this.contenedor.modificarTemperatura(100);
         Assert.assertEquals(100, this.contenedor.getTemperatura(), 0.0);
 
     }
@@ -39,7 +39,7 @@ public class ContenedorTest {
     @Test
     public void testQueModifiqueCorrectamenteLaVelocidadDeLasParticulasAlCambiarLaTemperaturaDelContenedor() {
 
-        this.contenedor.modificarTemperaturaDeParticulas(100);
+        this.contenedor.modificarTemperatura(100);
         for(Particula particula: this.contenedor.getParticulas()) {
 
             Assert.assertEquals(1, particula.getVelocidad(), 0.0);
@@ -50,7 +50,7 @@ public class ContenedorTest {
     @Test
     public void testQueModifiqueCorrectamenteElColorDeLasParticulasAlCambiarLaTemperaturaDelContenedor() {
 
-        this.contenedor.modificarTemperaturaDeParticulas(100);
+        this.contenedor.modificarTemperatura(100);
         Color color = new Color(255,255,0);
         for(Particula particula: this.contenedor.getParticulas()) {
 

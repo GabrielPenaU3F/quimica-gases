@@ -21,16 +21,16 @@ public class Simulador extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private double presion = 12.300;
-    private int moles = 25;
+	private Integer moles = 25;
 	private double temperatura = 300;
-	private int volumen = 50;	
+	private Integer volumen = 50;
 	private Color colorDePresion;
     private Map<String, JComponent> componentes;
     private CalculadoraGasesIdeales calculadoraGases;
-	
+
 	/**
 	 * Launch the application.
-	 * @throws InterruptedException 
+	 * @throws InterruptedException
 	 */
 
     //El objeto simulador es el frame principal
@@ -98,12 +98,12 @@ public class Simulador extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 simulador.actualizar();
                 //Modificación de la temperatura del gas
-                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarTemperaturaDeParticulas(simulador.getTemperatura());
+                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarTemperatura(simulador.getTemperatura());
                 //Modificación de la cantidad de moles de gas
                 ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarCantidadDeMoles(simulador.getMoles());
                 //Modificación del volumen del recipiente
-                int nuevoBordeSur = (int) (550 * (simulador.getVolumen()/100.0));
-                int nuevoBordeEste = (int) (450 * (simulador.getVolumen()/100.0));
+                Integer nuevoBordeSur = (int) (550 * (simulador.getVolumen()/100.0));
+                Integer nuevoBordeEste = (int) (450 * (simulador.getVolumen()/100.0));
                 ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAncho(nuevoBordeEste - 70);
                 ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAlto(nuevoBordeSur - 100);
                 springLayout.putConstraint(SpringLayout.SOUTH, simulador.componentes.get("ContenedorParticulas"), nuevoBordeSur, SpringLayout.NORTH, simulador.getContentPane());
@@ -242,9 +242,9 @@ public class Simulador extends JFrame {
         simulador.componentes.put("EtiquetaMoles", lblMoles);
 
     }
-    
+
     private void construirIndicadorDePresion(Simulador simulador, SpringLayout springLayout) {
-        
+
         JLabel indicadorPresion = new JLabel(simulador.presion + " atm.");
         springLayout.putConstraint(SpringLayout.NORTH, indicadorPresion, 85, SpringLayout.NORTH, simulador.getContentPane());
         springLayout.putConstraint(SpringLayout.WEST, indicadorPresion, 667, SpringLayout.WEST, simulador.getContentPane());
@@ -256,9 +256,9 @@ public class Simulador extends JFrame {
         simulador.componentes.put("IndicadorDePresion", indicadorPresion);
 
     }
-    
+
     private void construirEtiquetaPresionResultante(Simulador simulador, SpringLayout springLayout) {
-        
+
         JLabel lblPresionResultante = new JLabel("PRESION RESULTANTE");
         springLayout.putConstraint(SpringLayout.NORTH, lblPresionResultante, 53, SpringLayout.NORTH, simulador.getContentPane());
         springLayout.putConstraint(SpringLayout.WEST, lblPresionResultante, 606, SpringLayout.WEST, simulador.getContentPane());
@@ -269,9 +269,9 @@ public class Simulador extends JFrame {
         simulador.componentes.put("EtiquetaPresionResultante", lblPresionResultante);
 
     }
-    
+
     private void construirEtiquetaSimuladorDeGases(Simulador simulador, SpringLayout springLayout) {
-        
+
         JLabel lblSimuladorDeGases = new JLabel("SIMULADOR DE GASES");
         springLayout.putConstraint(SpringLayout.NORTH, lblSimuladorDeGases, 15, SpringLayout.NORTH, simulador.getContentPane());
         springLayout.putConstraint(SpringLayout.WEST, lblSimuladorDeGases, 63, SpringLayout.WEST, simulador.getContentPane());
@@ -281,7 +281,7 @@ public class Simulador extends JFrame {
         simulador.getContentPane().add(lblSimuladorDeGases);
         simulador.componentes.put("EtiquetaSimulador", lblSimuladorDeGases);
     }
-    
+
     private void construirContenedorDeParticulas(Simulador simulador, SpringLayout springLayout) {
 
         JPanel contenedor = new Contenedor();
@@ -316,19 +316,19 @@ public class Simulador extends JFrame {
         this.calcularColorSegunPresion();
 
 	}
-	
+
 	/**
 	 * Calculo de presion basado en la Ley de los Gases Ideales
 	 */
 
-	
+
 	private void calcularColorSegunPresion() {
-		int verde = (int) (255.0 * ((this.getPresion() - 0.082) / 164.0));
-		Color colorDePresion = new Color(255, 255 - verde, 0);	
+		Integer verde = (int) (255.0 * ((this.getPresion() - 0.082) / 164.0));
+		Color colorDePresion = new Color(255, 255 - verde, 0);
 		this.setColorDePresion(colorDePresion);
 	}
 
-	public int getMoles() {
+	public Integer getMoles() {
 		return moles;
 	}
 

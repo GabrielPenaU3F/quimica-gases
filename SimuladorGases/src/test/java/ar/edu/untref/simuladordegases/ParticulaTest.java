@@ -19,7 +19,8 @@ public class ParticulaTest {
     public void inicializar() {
 
         this.contenedor = new Contenedor();
-        this.particula = new Particula(contenedor,1);
+        this.contenedor.modificarTemperatura(3868.322309);
+        this.particula = new Particula(contenedor);
 
     }
 

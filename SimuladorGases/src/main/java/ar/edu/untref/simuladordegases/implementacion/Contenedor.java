@@ -51,7 +51,7 @@ public class Contenedor extends JPanel {
 	/** Modifica la temperatura del contenedor
      * @param temperatura
      */
-	public void modificarTemperaturaDeParticulas(double temperatura){
+	public void modificarTemperatura(double temperatura){
 
         this.temperatura = temperatura;
 
@@ -61,6 +61,7 @@ public class Contenedor extends JPanel {
 
 	}
 
+    //TODO: CAMBIAR URGENTE LA FORMULA DEL COLOR, DA CUALQUIER COSA
 	private Color calcularColorDeParticulas() {
 
 		Integer verde = (int) (255.0 * ((this.temperatura - 100.0) / 500.0));
@@ -91,7 +92,7 @@ public class Contenedor extends JPanel {
 
 		for(int i = 0; i < cantidadDeParticulas; i++){
 
-            Particula particula = new Particula(this, 1);
+            Particula particula = new Particula(this);
             particula.setColor(this.calcularColorDeParticulas());
 			this.particulas.add(particula);
 
@@ -189,4 +190,5 @@ public class Contenedor extends JPanel {
 
         return this.particulas;
     }
+    
 }
