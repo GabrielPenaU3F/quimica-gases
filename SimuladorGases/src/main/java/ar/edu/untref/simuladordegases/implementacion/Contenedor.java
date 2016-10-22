@@ -23,7 +23,6 @@ public class Contenedor {
         this.particulas = new LinkedList<Particula>();
         this.agitador = new Agitador();
         this.temperatura = 300;
-
         this.vistaContenedor = new VistaContenedor(this);
 
 	}

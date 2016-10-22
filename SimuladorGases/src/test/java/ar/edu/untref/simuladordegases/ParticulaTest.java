@@ -23,6 +23,8 @@ public class ParticulaTest {
 
         this.contenedor = new Contenedor();
         this.particula = new Particula(contenedor);
+        this.contenedor.setAncho(200);
+        this.contenedor.setAlto(200);
 
     }
 
@@ -76,8 +78,6 @@ public class ParticulaTest {
     @Test
     public void testQueSeMueva1AlNoresteSinChocar() {
 
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setOrientacion(new OrientacionNoreste());
         this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
@@ -88,8 +88,6 @@ public class ParticulaTest {
     @Test
     public void testQueSeMueva1AlNoroesteSinChocar() {
 
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setXPosicion(2);
         this.particula.setOrientacion(new OrientacionNoroeste());
         this.particula.mover();
@@ -102,8 +100,6 @@ public class ParticulaTest {
     @Test
     public void testQueSeMueva1AlSudesteSinChocar() {
 
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setYPosicion(2);
         this.particula.setOrientacion(new OrientacionSudeste());
         this.particula.mover();
@@ -115,8 +111,6 @@ public class ParticulaTest {
     @Test
     public void testQueSeMueva1AlSudoesteSinChocar() {
 
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setXPosicion(2);
         this.particula.setYPosicion(2);
         this.particula.setOrientacion(new OrientacionSudoeste());
@@ -134,8 +128,6 @@ public class ParticulaTest {
     public void testQueSeMueva5AlNoresteSinChocar() {
 
         this.particula.setVelocidad(5);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setOrientacion(new OrientacionNoreste());
         this.particula.mover();
         Assert.assertEquals(5, this.particula.getXPosicion(), 0.0);
@@ -147,8 +139,6 @@ public class ParticulaTest {
     public void testQueSeMueva5AlNoroesteSinChocar() {
 
         this.particula.setVelocidad(5);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setXPosicion(6);
         this.particula.setOrientacion(new OrientacionNoroeste());
         this.particula.mover();
@@ -161,8 +151,6 @@ public class ParticulaTest {
     public void testQueSeMueva5AlSudesteSinChocar() {
 
         this.particula.setVelocidad(5);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setYPosicion(6);
         this.particula.setOrientacion(new OrientacionSudeste());
         this.particula.mover();
@@ -175,8 +163,6 @@ public class ParticulaTest {
     public void testQueSeMueva5AlSudoesteSinChocar() {
 
         this.particula.setVelocidad(5);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setXPosicion(6);
         this.particula.setYPosicion(6);
         this.particula.setOrientacion(new OrientacionSudoeste());
@@ -192,8 +178,6 @@ public class ParticulaTest {
     public void testQueChoqueYReboteAlSudoesteDesde0() {
 
         this.particula.setVelocidad(5);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setOrientacion(new OrientacionSudoeste());
         this.particula.mover();
         Assert.assertEquals(5, particula.getXPosicion(), 0.0);
@@ -205,8 +189,6 @@ public class ParticulaTest {
     public void testQueDesdeCincoCincoChoqueYReboteAlSudoesteHastaDosDos() {
 
         this.particula.setVelocidad(7);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setXPosicion(5);
         this.particula.setYPosicion(5);
         this.particula.setOrientacion(new OrientacionSudoeste());
@@ -220,8 +202,6 @@ public class ParticulaTest {
     public void testQueDesdeCientoOchentaYCientoOchentaChoqueYReboteAlNoresteHastaElMismoPunto() {
 
         this.particula.setVelocidad(40);
-        this.contenedor.setAncho(200);
-        this.contenedor.setAlto(200);
         this.particula.setXPosicion(180);
         this.particula.setYPosicion(180);
         this.particula.setOrientacion(new OrientacionNoreste());

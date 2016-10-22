@@ -88,4 +88,28 @@ public class ContenedorTest {
         }
     }
 
+    @Test
+    public void testQueElimineDiezParticulas() {
+
+        this.contenedor.eliminarParticulas(10);
+        Assert.assertEquals(10, this.contenedor.getParticulas().size());
+
+    }
+
+    @Test
+    public void testAlColocar40MolesEnTotalAgregue20ParticulasALas20Existentes() {
+
+        this.contenedor.modificarCantidadDeMoles(40);
+        Assert.assertEquals(40, this.contenedor.getParticulas().size());
+
+    }
+
+    @Test
+    public void testAlColocar10MolesEnTotalElimine10DeLas20Existentes() {
+
+        this.contenedor.modificarCantidadDeMoles(10);
+        Assert.assertEquals(10, this.contenedor.getParticulas().size());
+
+    }
+
 }
