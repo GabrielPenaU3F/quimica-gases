@@ -1,12 +1,12 @@
 package ar.edu.untref.simuladordegases.implementacion;
 
-import javax.swing.*;
-import java.awt.*;
+import ar.edu.untref.simuladordegases.interfaz.VistaContenedor;
+
 import java.util.LinkedList;
 import java.util.List;
 
 @SuppressWarnings("serial")
-public class Contenedor extends JPanel {
+public class Contenedor {
 
 	private List<Particula> particulas;
 
@@ -16,6 +16,7 @@ public class Contenedor extends JPanel {
 	private int origen_y;
     private double temperatura;
     private Agitador agitador;
+    private VistaContenedor vistaContenedor;
 
 	public Contenedor(){
 
@@ -23,27 +24,16 @@ public class Contenedor extends JPanel {
         this.agitador = new Agitador();
         this.temperatura = 300;
 
+        this.vistaContenedor = new VistaContenedor(this);
+
 	}
 
-    
-    @Override
-	public void paint(Graphics g) {
-
-		super.paint(g);
-		Graphics2D g2d = (Graphics2D) g;
-
-		for(Particula particula : this.particulas){
-
-			particula.paint(g2d);
-
-		}		
-	}
 	
 	public void precipitar() throws InterruptedException{
 
 		while (true) {
 			this.agitador.agitar(this.particulas);
-			this.repaint();	
+			this.vistaContenedor.repaint();
 			Thread.sleep(10);
 		}			
 	}	
@@ -181,4 +171,9 @@ public class Contenedor extends JPanel {
         return this.particulas;
     }
     
+    public VistaContenedor getVista() {
+
+        return this.vistaContenedor;
+
+    }
 }

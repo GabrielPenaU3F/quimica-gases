@@ -1,5 +1,7 @@
 package ar.edu.untref.simuladordegases.implementacion;
 
+import ar.edu.untref.simuladordegases.interfaz.VistaParticula;
+
 import java.awt.*;
 
 public class Particula {
@@ -21,6 +23,8 @@ public class Particula {
 
     private final double constanteProporcionalidadVelocidad = 3.603424558562339;
 
+    private VistaParticula vistaParticula;
+
     protected Orientacion orientacion;
 
     public Particula(Contenedor contenedor) {
@@ -31,6 +35,8 @@ public class Particula {
         this.energia.calcularEnergiaCineticaTotal(this.contenedor.getTemperatura());
         this.velocidad = this.calcularVelocidad();
         this.color = this.calcularColor(this.contenedor.getTemperatura());
+
+        this.vistaParticula = new VistaParticula(this);
 
 	}
     
@@ -68,12 +74,6 @@ public class Particula {
 		
 	}		
 
-	public void paint(Graphics2D g) {
-
-		g.fillOval(this.x, this.y, this.ancho, this.altura);
-		g.setColor(this.getColor());
-
-	}
 
 	public double getVelocidad() {
 
@@ -103,12 +103,12 @@ public class Particula {
         return this.altura;
     }
 
-    public double getXPosicion() {
+    public int getXPosicion() {
 
         return x;
     }
 
-    public double getYPosicion() {
+    public int getYPosicion() {
 
         return y;
     }
@@ -138,5 +138,10 @@ public class Particula {
 
         this.color = calcularColor(this.contenedor.getTemperatura());
 
+    }
+
+    public VistaParticula getVista() {
+
+        return this.vistaParticula;
     }
 }

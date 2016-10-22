@@ -1,6 +1,7 @@
 package ar.edu.untref.simuladordegases;
 
 import ar.edu.untref.simuladordegases.implementacion.*;
+import ar.edu.untref.simuladordegases.interfaz.VistaParticula;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,6 +59,14 @@ public class ParticulaTest {
 
         Color color = new Color(255, 255 - (255*200/500), 0);
         Assert.assertEquals(color, this.particula.getColor());
+
+    }
+
+    @Test
+    public void testQueLaParticulaSeCreeConUnaVistaPorDefault() {
+
+        VistaParticula vista = new VistaParticula(this.particula);
+        Assert.assertEquals(vista, this.particula.getVista());
 
     }
 

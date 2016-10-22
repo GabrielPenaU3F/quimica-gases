@@ -2,6 +2,7 @@ package ar.edu.untref.simuladordegases;
 
 import ar.edu.untref.simuladordegases.implementacion.Contenedor;
 import ar.edu.untref.simuladordegases.implementacion.Particula;
+import ar.edu.untref.simuladordegases.interfaz.VistaContenedor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,14 @@ public class ContenedorTest {
             contenedor.agregarParticula(particula);
 
         }
+
+    }
+
+    @Test
+    public void testQueElContenedorSeCreeConUnaVistaPorDefault() {
+
+        VistaContenedor vista = new VistaContenedor(this.contenedor);
+        Assert.assertEquals(vista, this.contenedor.getVista());
 
     }
 

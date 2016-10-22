@@ -88,7 +88,7 @@ public class Simulador extends JFrame {
 		 * NOTA2: Si esta sentencia esta al final del main, el simulador nunca se hace visible porque precipitar() es infinito
 		 */
         simulador.setVisible(true);
-        ((Contenedor) simulador.componentes.get("ContenedorParticulas")).precipitar();
+        ((VistaContenedor) simulador.componentes.get("ContenedorParticulas")).getContenedor().precipitar();
     }
 
     private void colocarListener(Simulador simulador, SpringLayout springLayout, JComponent boton) {
@@ -98,14 +98,14 @@ public class Simulador extends JFrame {
             public void mouseClicked(MouseEvent e) {
                 simulador.actualizar();
                 //Modificación de la temperatura del gas
-                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarTemperatura(simulador.getTemperatura());
+                ((VistaContenedor)simulador.componentes.get("ContenedorParticulas")).getContenedor().modificarTemperatura(simulador.getTemperatura());
                 //Modificación de la cantidad de moles de gas
-                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).modificarCantidadDeMoles(simulador.getMoles());
+                ((VistaContenedor)simulador.componentes.get("ContenedorParticulas")).getContenedor().modificarCantidadDeMoles(simulador.getMoles());
                 //Modificación del volumen del recipiente
                 Integer nuevoBordeSur = (int) (550 * (simulador.getVolumen()/100.0));
                 Integer nuevoBordeEste = (int) (450 * (simulador.getVolumen()/100.0));
-                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAncho(nuevoBordeEste - 70);
-                ((Contenedor)simulador.componentes.get("ContenedorParticulas")).setAlto(nuevoBordeSur - 100);
+                ((VistaContenedor)simulador.componentes.get("ContenedorParticulas")).getContenedor().setAncho(nuevoBordeEste - 70);
+                ((VistaContenedor)simulador.componentes.get("ContenedorParticulas")).getContenedor().setAlto(nuevoBordeSur - 100);
                 springLayout.putConstraint(SpringLayout.SOUTH, simulador.componentes.get("ContenedorParticulas"), nuevoBordeSur, SpringLayout.NORTH, simulador.getContentPane());
                 springLayout.putConstraint(SpringLayout.EAST, simulador.componentes.get("ContenedorParticulas"), nuevoBordeEste, SpringLayout.WEST, simulador.getContentPane());
                 //Modificación de la etiqueta de presion
@@ -284,17 +284,18 @@ public class Simulador extends JFrame {
 
     private void construirContenedorDeParticulas(Simulador simulador, SpringLayout springLayout) {
 
-        JPanel contenedor = new Contenedor();
-        ((Contenedor) contenedor).setLimites(80,80,380,450);
-        springLayout.putConstraint(SpringLayout.NORTH, contenedor, 100, SpringLayout.NORTH, simulador.getContentPane());
-        springLayout.putConstraint(SpringLayout.WEST, contenedor, 70, SpringLayout.WEST, simulador.getContentPane());
-        springLayout.putConstraint(SpringLayout.SOUTH, contenedor, 550, SpringLayout.NORTH, simulador.getContentPane());
-        springLayout.putConstraint(SpringLayout.EAST, contenedor, 450, SpringLayout.WEST, simulador.getContentPane());
-        contenedor.setBackground(Color.WHITE);
-        contenedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-        contenedor.setName("ContenedorParticulas");
-        simulador.getContentPane().add(contenedor);
-        simulador.componentes.put("ContenedorParticulas", contenedor);
+        Contenedor contenedor = new Contenedor();
+        contenedor.setLimites(80,80,380,450);
+        JPanel vistaContenedor = new VistaContenedor(contenedor);
+        springLayout.putConstraint(SpringLayout.NORTH, vistaContenedor, 100, SpringLayout.NORTH, simulador.getContentPane());
+        springLayout.putConstraint(SpringLayout.WEST, vistaContenedor, 70, SpringLayout.WEST, simulador.getContentPane());
+        springLayout.putConstraint(SpringLayout.SOUTH, vistaContenedor, 550, SpringLayout.NORTH, simulador.getContentPane());
+        springLayout.putConstraint(SpringLayout.EAST, vistaContenedor, 450, SpringLayout.WEST, simulador.getContentPane());
+        vistaContenedor.setBackground(Color.WHITE);
+        vistaContenedor.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+        vistaContenedor.setName("ContenedorParticulas");
+        simulador.getContentPane().add(vistaContenedor);
+        simulador.componentes.put("ContenedorParticulas", vistaContenedor);
     }
 
     private void construirLayout(Simulador simulador) {
