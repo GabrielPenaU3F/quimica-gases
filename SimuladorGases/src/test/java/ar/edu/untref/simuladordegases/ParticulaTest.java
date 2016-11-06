@@ -13,6 +13,12 @@ import java.awt.*;
  */
 public class ParticulaTest {
 
+    /*La posicion de la particula en el contenedor es:
+    El origen, (0,0), esta en la esquina superior izquierda
+    X aumenta hacia la derecha
+    Y aumenta hacia abajo
+     */
+
     private Particula particula;
     private Contenedor contenedor;
 
@@ -72,6 +78,14 @@ public class ParticulaTest {
 
     }
 
+    @Test
+    public void testQueLaParticulaSeCreeConOrientacionDefaultSudeste() {
+
+        Orientacion orientacionSudeste = new OrientacionSudeste();
+        Assert.assertEquals(orientacionSudeste, this.particula.getOrientacion());
+
+    }
+
     /*
         TESTS DEL MOVIMIENTO CON VELOCIDAD 1
      */
@@ -79,16 +93,19 @@ public class ParticulaTest {
     public void testQueSeMueva1AlNoresteSinChocar() {
 
         this.particula.setOrientacion(new OrientacionNoreste());
+        this.particula.setYPosicion(2);
         this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
         Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
 
+
     @Test
     public void testQueSeMueva1AlNoroesteSinChocar() {
 
         this.particula.setXPosicion(2);
+        this.particula.setYPosicion(2);
         this.particula.setOrientacion(new OrientacionNoroeste());
         this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
@@ -100,23 +117,22 @@ public class ParticulaTest {
     @Test
     public void testQueSeMueva1AlSudesteSinChocar() {
 
-        this.particula.setYPosicion(2);
         this.particula.setOrientacion(new OrientacionSudeste());
         this.particula.mover();
-        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
+
 
     @Test
     public void testQueSeMueva1AlSudoesteSinChocar() {
 
         this.particula.setXPosicion(2);
-        this.particula.setYPosicion(2);
         this.particula.setOrientacion(new OrientacionSudoeste());
         this.particula.mover();
-        Assert.assertEquals(1, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
 
@@ -124,26 +140,30 @@ public class ParticulaTest {
        // TESTS DEL MOVIMIENTO CON VELOCIDAD 5
 
 
+
     @Test
     public void testQueSeMueva5AlNoresteSinChocar() {
 
         this.particula.setVelocidad(5);
         this.particula.setOrientacion(new OrientacionNoreste());
+        this.particula.setYPosicion(6);
         this.particula.mover();
         Assert.assertEquals(5, this.particula.getXPosicion(), 0.0);
-        Assert.assertEquals(5, this.particula.getYPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
+
 
     @Test
     public void testQueSeMueva5AlNoroesteSinChocar() {
 
         this.particula.setVelocidad(5);
         this.particula.setXPosicion(6);
+        this.particula.setYPosicion(6);
         this.particula.setOrientacion(new OrientacionNoroeste());
         this.particula.mover();
         Assert.assertEquals(1, this.particula.getXPosicion(), 0.0);
-        Assert.assertEquals(5, this.particula.getYPosicion(), 0.0);
+        Assert.assertEquals(1, this.particula.getYPosicion(), 0.0);
 
     }
 
@@ -151,11 +171,10 @@ public class ParticulaTest {
     public void testQueSeMueva5AlSudesteSinChocar() {
 
         this.particula.setVelocidad(5);
-        this.particula.setYPosicion(6);
         this.particula.setOrientacion(new OrientacionSudeste());
         this.particula.mover();
         Assert.assertEquals(5, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+        Assert.assertEquals(5, particula.getYPosicion(), 0.0);
 
     }
 
@@ -164,21 +183,22 @@ public class ParticulaTest {
 
         this.particula.setVelocidad(5);
         this.particula.setXPosicion(6);
-        this.particula.setYPosicion(6);
         this.particula.setOrientacion(new OrientacionSudoeste());
         this.particula.mover();
         Assert.assertEquals(1, particula.getXPosicion(), 0.0);
-        Assert.assertEquals(1, particula.getYPosicion(), 0.0);
+        Assert.assertEquals(5, particula.getYPosicion(), 0.0);
 
     }
 
     /* TESTS DE COLISIONES CONTRA LAS PAREDES */
 
+
+
     @Test
-    public void testQueChoqueYReboteAlSudoesteDesde0() {
+    public void testQueChoqueYReboteDelNoroesteAlSudesteDesde0() {
 
         this.particula.setVelocidad(5);
-        this.particula.setOrientacion(new OrientacionSudoeste());
+        this.particula.setOrientacion(new OrientacionNoroeste());
         this.particula.mover();
         Assert.assertEquals(5, particula.getXPosicion(), 0.0);
         Assert.assertEquals(5, particula.getYPosicion(), 0.0);
@@ -186,12 +206,12 @@ public class ParticulaTest {
     }
 
     @Test
-    public void testQueDesdeCincoCincoChoqueYReboteAlSudoesteHastaDosDos() {
+    public void testQueDesdeCincoCincoChoqueYReboteDelNoroesteAlSudesteHastaDosDos() {
 
         this.particula.setVelocidad(7);
         this.particula.setXPosicion(5);
         this.particula.setYPosicion(5);
-        this.particula.setOrientacion(new OrientacionSudoeste());
+        this.particula.setOrientacion(new OrientacionNoroeste());
         this.particula.mover();
         Assert.assertEquals(2, particula.getXPosicion(), 0.0);
         Assert.assertEquals(2, particula.getYPosicion(), 0.0);
@@ -199,12 +219,12 @@ public class ParticulaTest {
     }
 
     @Test
-    public void testQueDesdeCientoOchentaYCientoOchentaChoqueYReboteAlNoresteHastaElMismoPunto() {
+    public void testQueDesdeCientoOchentaYCientoOchentaChoqueYReboteDelSudesteAlNoroesteHastaElMismoPunto() {
 
         this.particula.setVelocidad(40);
         this.particula.setXPosicion(180);
         this.particula.setYPosicion(180);
-        this.particula.setOrientacion(new OrientacionNoreste());
+        this.particula.setOrientacion(new OrientacionSudeste());
         this.particula.mover();
         Assert.assertEquals(180, particula.getXPosicion(), 0.0);
         Assert.assertEquals(180, particula.getYPosicion(), 0.0);

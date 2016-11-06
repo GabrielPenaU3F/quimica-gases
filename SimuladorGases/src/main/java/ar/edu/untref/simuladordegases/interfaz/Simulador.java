@@ -2,6 +2,7 @@ package ar.edu.untref.simuladordegases.interfaz;
 
 import ar.edu.untref.simuladordegases.implementacion.CalculadoraGasesIdeales;
 import ar.edu.untref.simuladordegases.implementacion.Contenedor;
+import ar.edu.untref.simuladordegases.implementacion.Particula;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -67,7 +68,13 @@ public class Simulador extends JFrame {
 
         construirSliderVolumen(simulador, springLayout); //Nombre: SliderVolumen
 
+        Particula particula = new Particula(((VistaContenedor)simulador.componentes.get("ContenedorParticulas")).getContenedor());
+        particula.setYPosicion(440);
+
+        ((VistaContenedor)this.componentes.get("ContenedorParticulas")).getContenedor().agregarParticula(particula);
+
         construirBotonActualizar(simulador, springLayout); //Nombre: BotonActualizar
+
     }
 
     private void construirBotonActualizar(Simulador simulador, SpringLayout springLayout) throws InterruptedException {
@@ -88,6 +95,11 @@ public class Simulador extends JFrame {
 		 * NOTA2: Si esta sentencia esta al final del main, el simulador nunca se hace visible porque precipitar() es infinito
 		 */
         simulador.setVisible(true);
+        comenzarSimulacion(simulador);
+    }
+
+    private void comenzarSimulacion(Simulador simulador) throws InterruptedException {
+
         ((VistaContenedor) simulador.componentes.get("ContenedorParticulas")).getContenedor().precipitar();
     }
 
@@ -285,7 +297,7 @@ public class Simulador extends JFrame {
     private void construirContenedorDeParticulas(Simulador simulador, SpringLayout springLayout) {
 
         Contenedor contenedor = new Contenedor();
-        contenedor.setLimites(80,80,380,450);
+        contenedor.setLimites(-10,-10,400,400);
         JPanel vistaContenedor = new VistaContenedor(contenedor);
         springLayout.putConstraint(SpringLayout.NORTH, vistaContenedor, 100, SpringLayout.NORTH, simulador.getContentPane());
         springLayout.putConstraint(SpringLayout.WEST, vistaContenedor, 70, SpringLayout.WEST, simulador.getContentPane());
@@ -330,27 +342,39 @@ public class Simulador extends JFrame {
 	}
 
 	public Integer getMoles() {
-		return moles;
+
+			return moles;
+
 	}
 
 	public void setMoles(int moles) {
+
 		this.moles = moles;
+
 	}
 
 	public double getTemperatura() {
+
 		return this.temperatura;
+
 	}
 
 	public void setTemperatura(double temperatura) {
+
 		this.temperatura = temperatura;
+
 	}
 
 	public int getVolumen() {
+
 		return this.volumen;
+
 	}
 
 	public void setVolumen(int volumen) {
+
 		this.volumen = volumen;
+
 	}
 
 	public String getPresionFormateada() {

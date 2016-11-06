@@ -32,7 +32,6 @@ public class Agitador {
 
                     }
 
-                    //EN ESTE METODO ESTA EL BUG QUE HAY QUE ARREGLAR.
                     this.moverParticulas(particulas);
 
                 }

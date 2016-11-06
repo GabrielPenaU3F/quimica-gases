@@ -10,10 +10,10 @@ public class Contenedor {
 
 	private List<Particula> particulas;
 
-	private int ancho;
-	private int alto;
-	private int origen_x;
-	private int origen_y;
+	private int ancho=200;
+	private int alto=200;
+	private int origen_x=0;
+	private int origen_y=0;
     private double temperatura;
     private Agitador agitador;
     private VistaContenedor vistaContenedor;
@@ -74,7 +74,7 @@ public class Contenedor {
 		for(int i = 0; i < cantidadDeParticulas; i++){
 
             Particula particula = new Particula(this);
-			this.particulas.add(particula);
+			this.agregarParticula(particula);
 
 		}
 		
@@ -175,4 +175,5 @@ public class Contenedor {
         return this.vistaContenedor;
 
     }
+
 }

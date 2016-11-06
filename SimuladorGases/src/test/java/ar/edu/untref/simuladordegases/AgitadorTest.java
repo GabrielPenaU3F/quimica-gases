@@ -46,10 +46,10 @@ public class AgitadorTest {
         this.agitador.moverParticulas(particulas);
 
         Assert.assertEquals(4, unaParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(6, unaParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(4, unaParticula.getYPosicion(), 0.0);
 
         Assert.assertEquals(6, otraParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(4, otraParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(6, otraParticula.getYPosicion(), 0.0);
 
     }
 
@@ -70,10 +70,10 @@ public class AgitadorTest {
         this.agitador.moverParticulas(particulas);
 
         Assert.assertEquals(6, unaParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(4, unaParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(6, unaParticula.getYPosicion(), 0.0);
 
         Assert.assertEquals(4, otraParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(6, otraParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(4, otraParticula.getYPosicion(), 0.0);
 
     }
 
@@ -95,10 +95,10 @@ public class AgitadorTest {
         this.agitador.moverParticulas(particulas);
 
         Assert.assertEquals(4, unaParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(4, unaParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(6, unaParticula.getYPosicion(), 0.0);
 
         Assert.assertEquals(6, otraParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(6, otraParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(4, otraParticula.getYPosicion(), 0.0);
 
     }
 
@@ -119,10 +119,10 @@ public class AgitadorTest {
         this.agitador.moverParticulas(particulas);
 
         Assert.assertEquals(6, unaParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(6, unaParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(4, unaParticula.getYPosicion(), 0.0);
 
         Assert.assertEquals(4, otraParticula.getXPosicion(), 0.0);
-        Assert.assertEquals(4, otraParticula.getYPosicion(), 0.0);
+        Assert.assertEquals(6, otraParticula.getYPosicion(), 0.0);
 
     }
 

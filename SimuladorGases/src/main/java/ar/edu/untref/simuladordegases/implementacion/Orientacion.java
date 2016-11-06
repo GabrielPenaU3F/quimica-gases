@@ -21,7 +21,7 @@ public abstract class Orientacion {
         if(posicionFinalRegular > particula.getContenedor().getAlto()) {
 
             double movimientoRestanteLuegoDelChoque = abs(movimientoEnY) - abs(particula.getContenedor().getAlto() - particula.getYPosicion());
-            return (int) ((int) particula.getContenedor().getAlto() - movimientoRestanteLuegoDelChoque);
+            return (int) (particula.getContenedor().getAlto() - movimientoRestanteLuegoDelChoque);
 
         }
         return (int) posicionFinalRegular;
@@ -44,6 +44,15 @@ public abstract class Orientacion {
 
         }
         return (int) posicionFinalRegular;
+
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        Orientacion otra = (Orientacion) o;
+        if (this.getClass().equals(otra.getClass())) return true;
+        else return false;
 
     }
     

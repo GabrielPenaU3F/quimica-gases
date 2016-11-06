@@ -144,4 +144,9 @@ public class Particula {
 
         return this.vistaParticula;
     }
+
+    public Orientacion getOrientacion() {
+
+        return this.orientacion;
+    }
 }
