@@ -13,6 +13,7 @@ public class VistaParticula {
 
     public VistaParticula(Particula particula) {
 
+        super();
         this.particula = particula;
 
     }

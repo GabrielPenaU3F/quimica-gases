@@ -38,7 +38,6 @@ public class Contenedor {
 	}	
 
 	/** Modifica la temperatura del contenedor
-     * @param temperatura
      */
 	public void modificarTemperatura(double temperatura){
 

@@ -5,7 +5,7 @@ package ar.edu.untref.simuladordegases.implementacion;
  */
 public class CalculadoraGasesIdeales {
 
-    public double calcularPresion(int moles, double temperatura, int volumen){
+    public double calcularPresion(int moles, double temperatura, double volumen){
 
         double constanteDeGases = 0.08205746;
         double presionResultante = (moles * constanteDeGases * temperatura / volumen);
